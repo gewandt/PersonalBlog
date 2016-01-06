@@ -9,7 +9,10 @@ namespace BLL.Interface.Services
 {
     public interface IUserService
     {
-        void CreateUser(UserEntity user);
-        bool DeleteUser(UserEntity user);
+        bool CreateUser(UserEntity user);
+        bool DeleteUser(int userId);
+        bool EditUser(UserEntity user);
+        UserEntity GetUser(int userId);
+        IEnumerable<UserEntity> GetUsers();
     }
 }
