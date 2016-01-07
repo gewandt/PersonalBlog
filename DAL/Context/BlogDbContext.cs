@@ -4,7 +4,7 @@ using DAL.Interface.Repository;
 
 namespace DAL.Context
 {
-    public class BlogDbContext : IUnit
+    public class BlogDbContext : IUnitOfWork
     {
         public DbContext Context { get; private set; }
 
@@ -14,7 +14,7 @@ namespace DAL.Context
             //Debug.WriteLine("unit of work create!");
         }
 
-        public void Save()
+        public void Commit()
         {
             if (Context != null)
             {

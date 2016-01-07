@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using BlogEntity.Entities;
 using DAL.Context;
 using DAL.Interface.Repository;
@@ -11,9 +12,9 @@ namespace DAL.Repository
     {
         private readonly DbContext _context;
 
-        public UserRepository(DbContext unit)
+        public UserRepository(DbContext context)
         {
-            _context = unit;
+            _context = context;
         }
         public bool Create(UserEntity entity)
         {
