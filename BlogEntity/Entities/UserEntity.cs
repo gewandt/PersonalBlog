@@ -1,8 +1,9 @@
 ﻿using System;
+using BlogEntity.Interfaces;
 
-namespace BLL.Interface.Entities
+namespace BlogEntity.Entities
 {
-    public class UserEntity
+    public class UserEntity : IEntity
     {
         public int Id { get; set; }
         public string UserName { get; set; }

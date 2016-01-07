@@ -1,33 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using BLL.Interface.Entities;
+using BlogEntity.Entities;
 using BLL.Interface.Services;
 
 namespace BLL.Services
 {
-    public class UserService : IUserService
+    public class UserService : IService<UserEntity>
     {
-        public bool CreateUser(UserEntity user)
+        public bool Create(UserEntity user)
         {
             throw new NotImplementedException();
         }
 
-        public bool DeleteUser(int userId)
+        public bool Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public bool EditUser(UserEntity user)
+        public bool Update(UserEntity user)
         {
             throw new NotImplementedException();
         }
 
-        public UserEntity GetUser(int userId)
+        public UserEntity GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<UserEntity> GetUsers()
+        public IEnumerable<UserEntity> GetAll()
         {
             throw new NotImplementedException();
         }
