@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using DAL.Interface.Repository;
 
 namespace DAL.Context
