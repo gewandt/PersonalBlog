@@ -39,12 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\ArticleEntity.cs" />
-    <Compile Include="Entities\BlogEntity.cs" />
-    <Compile Include="Entities\CommentEntity.cs" />
-    <Compile Include="Entities\RoleEntity.cs" />
-    <Compile Include="Entities\TagEntity.cs" />
-    <Compile Include="Entities\UserEntity.cs" />
+    <Compile Include="Entities\BllArticleEntity.cs" />
+    <Compile Include="Entities\BllBlogEntity.cs" />
+    <Compile Include="Entities\BllCommentEntity.cs" />
+    <Compile Include="Entities\BllRoleEntity.cs" />
+    <Compile Include="Entities\BllTagEntity.cs" />
+    <Compile Include="Entities\BllUserEntity.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IService.cs" />

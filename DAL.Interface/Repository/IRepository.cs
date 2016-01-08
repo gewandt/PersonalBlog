@@ -4,7 +4,7 @@ using BlogEntity.Interfaces;
 
 namespace DAL.Interface.Repository
 {
-    public interface IRepository<TEntity> where TEntity : IEntity
+    public interface IRepository<TEntity> where TEntity : IDalEntity
     {
         bool Create(TEntity entity);
         bool Delete(TEntity entity);

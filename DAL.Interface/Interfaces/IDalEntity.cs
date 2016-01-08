@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlogEntity.Interfaces
 {
-    public interface IEntity
+    public interface IDalEntity
     {
         int Id { get; set; }
     }
