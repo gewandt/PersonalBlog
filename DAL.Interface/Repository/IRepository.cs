@@ -9,7 +9,7 @@ namespace DAL.Interface.Repository
         bool Create(TEntity entity);
         bool Delete(TEntity entity);
         bool Update(TEntity entity);
-        IEnumerable<TEntity> GetEntities();
+        IEnumerable<TEntity> GetAll();
         TEntity GetById(int id);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using BlogEntity.Entities;
+using DAL.Interface.Entities;
 
 namespace DAL.Interface.Repository
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BlogEntity.Entities;
+using BLL.Interface.Entities;
 using BLL.Interface.Services;
 
 namespace BLL.Services

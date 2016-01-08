@@ -31,7 +31,7 @@ namespace DAL.Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<UserEntity> GetEntities()
+        public IEnumerable<UserEntity> GetAll()
         {
             throw new NotImplementedException();
         }
