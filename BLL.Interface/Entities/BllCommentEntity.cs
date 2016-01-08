@@ -7,12 +7,12 @@ using BlogEntity.Interfaces;
 
 namespace BLL.Interface.Entities
 {
-    public class ArticleEntity : IEntity
+    public class BllCommentEntity : IEntity
     {
         public int Id { get; set; }
-        public string Name { get; set; }
         public string Text { get; set; }
-        public int TagId { get; set; }
-        public int BlogId { get; set; }
+        public BllArticleEntity Article { get; set; }
+        public BllUserEntity User { get; set; }
+        public DateTime Date { get; set; }
     }
 }
