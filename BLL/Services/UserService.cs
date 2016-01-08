@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using BlogEntity.Interfaces;
 using BLL.Interface.Entities;
+using BLL.Interface.Interfaces;
 using BLL.Interface.Services;
 using DAL.Interface.Repository;
 

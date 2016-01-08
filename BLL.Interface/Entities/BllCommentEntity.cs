@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlogEntity.Interfaces;
+using BLL.Interface.Interfaces;
 
 namespace BLL.Interface.Entities
 {
-    public class BllCommentEntity : IEntity
+    public class BllCommentEntity : IBllEntity
     {
         public int Id { get; set; }
         public string Text { get; set; }

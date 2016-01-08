@@ -7,10 +7,10 @@ using BlogEntity.Interfaces;
 
 namespace DAL.Interface.Entities
 {
-    public class DalTagDalEntity : IDalEntity
+    public class DalBlogEntity : IDalEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DalArticleDalEntity ArticleDal { get; set; }
+        public DalUserEntity User { get; set; }
     }
 }
