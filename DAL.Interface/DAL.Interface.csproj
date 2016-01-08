@@ -44,12 +44,6 @@
     <Compile Include="Repository\IUnitOfWork.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BlogEntity\BlogEntity.csproj">
-      <Project>{0ee9ce0c-eebc-4127-a93c-4eb687da3dd0}</Project>
-      <Name>BlogEntity</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,11 +1,11 @@
 ﻿using System;
 using BlogEntity.Interfaces;
 
-namespace BlogEntity.Entities
+namespace BLL.Interface.Entities
 {
     public class RoleEntity : IEntity
     {
         public int Id { get; set; }
-        public string RoleName { get; set; }
+        public string Name { get; set; }
     }
 }

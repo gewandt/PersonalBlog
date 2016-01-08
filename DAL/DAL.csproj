@@ -53,10 +53,6 @@
     <Compile Include="Repository\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BlogEntity\BlogEntity.csproj">
-      <Project>{0ee9ce0c-eebc-4127-a93c-4eb687da3dd0}</Project>
-      <Name>BlogEntity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DAL.Interface\DAL.Interface.csproj">
       <Project>{3b2e7c0b-28b3-4870-be8b-ba38c466a85f}</Project>
       <Name>DAL.Interface</Name>

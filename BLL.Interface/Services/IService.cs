@@ -10,7 +10,7 @@ namespace BLL.Interface.Services
         bool Create(TEntity user);
         bool Delete(int id);
         bool Update(TEntity user);
-        UserEntity GetById(int id);
+        TEntity GetById(int id);
         IEnumerable<TEntity> GetAll();
     }
 }
