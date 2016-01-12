@@ -6,35 +6,34 @@ namespace DAL.Context
 {
     public class BlogDbContext : IUnitOfWork
     {
-        public DbContext Context { get; private set; }
+        private readonly DbContext context;
+        private IUnitOfWork uow;
 
         public BlogDbContext(DbContext context)
         {
-            Context = context;
-            //Debug.WriteLine("unit of work create!");
+            this.context = context;
         }
 
         public void Commit()
         {
-            if (Context != null)
+            if (context != null)
             {
-                Context.SaveChanges();
+                context.SaveChanges();
             }
         }
 
         public void Dispose()
         {
             Dispose(true);
-            //Debug.WriteLine("Context dispose!");
             GC.SuppressFinalize(this);
         }
 
         private void Dispose(bool disposing)
         {
             if (!disposing) return;
-            if (Context != null)
+            if (context != null)
             {
-                Context.Dispose();
+                context.Dispose();
             }
         }
     }

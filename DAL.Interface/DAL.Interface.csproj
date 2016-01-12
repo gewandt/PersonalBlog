@@ -46,6 +46,7 @@
     <Compile Include="Entities\DalTagEntity.cs" />
     <Compile Include="Entities\DalUserEntity.cs" />
     <Compile Include="Interfaces\IDalEntity.cs" />
+    <Compile Include="Interfaces\IMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\IUnitOfWork.cs" />
