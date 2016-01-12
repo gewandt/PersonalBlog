@@ -40,6 +40,7 @@ namespace DAL.Repository
         {
             var itemToUpdate = _dbSet.Find(item.Id);
             _mapper.CopyFields(item, itemToUpdate);
+            return true;
         }
 
         public IEnumerable<TDal> GetAll()
