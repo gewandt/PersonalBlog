@@ -1,5 +1,5 @@
 ﻿using System;
-using BlogEntity.Interfaces;
+using DAL.Interface.Interfaces;
 
 namespace DAL.Interface.Entities
 {

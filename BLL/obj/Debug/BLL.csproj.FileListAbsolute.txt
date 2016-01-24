@@ -1,0 +1,9 @@
+D:\Projects Visual Studio\PersonalBlog\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+D:\Projects Visual Studio\PersonalBlog\BLL\bin\Debug\BLL.dll
+D:\Projects Visual Studio\PersonalBlog\BLL\bin\Debug\BLL.pdb
+D:\Projects Visual Studio\PersonalBlog\BLL\bin\Debug\BLL.Interface.dll
+D:\Projects Visual Studio\PersonalBlog\BLL\bin\Debug\DAL.Interface.dll
+D:\Projects Visual Studio\PersonalBlog\BLL\bin\Debug\BLL.Interface.pdb
+D:\Projects Visual Studio\PersonalBlog\BLL\bin\Debug\DAL.Interface.pdb
+D:\Projects Visual Studio\PersonalBlog\BLL\obj\Debug\BLL.dll
+D:\Projects Visual Studio\PersonalBlog\BLL\obj\Debug\BLL.pdb

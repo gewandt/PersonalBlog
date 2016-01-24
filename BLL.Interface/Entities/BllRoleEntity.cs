@@ -1,5 +1,4 @@
 ﻿using System;
-using BlogEntity.Interfaces;
 using BLL.Interface.Interfaces;
 
 namespace BLL.Interface.Entities

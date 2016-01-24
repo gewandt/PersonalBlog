@@ -25,11 +25,11 @@ namespace ORM
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Articles> Articles { get; set; }
-        public virtual DbSet<Blogs> Blogs { get; set; }
-        public virtual DbSet<Comments> Comments { get; set; }
-        public virtual DbSet<Roles> Roles { get; set; }
-        public virtual DbSet<Tags> Tags { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Article> Articles { get; set; }
+        public virtual DbSet<Blog> Blogs { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

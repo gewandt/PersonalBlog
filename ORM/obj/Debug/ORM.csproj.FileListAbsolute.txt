@@ -1,0 +1,11 @@
+D:\Projects Visual Studio\PersonalBlog\ORM\bin\Debug\ORM.dll.config
+D:\Projects Visual Studio\PersonalBlog\ORM\bin\Debug\ORM.dll
+D:\Projects Visual Studio\PersonalBlog\ORM\bin\Debug\ORM.pdb
+D:\Projects Visual Studio\PersonalBlog\ORM\bin\Debug\EntityFramework.dll
+D:\Projects Visual Studio\PersonalBlog\ORM\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects Visual Studio\PersonalBlog\ORM\bin\Debug\EntityFramework.xml
+D:\Projects Visual Studio\PersonalBlog\ORM\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects Visual Studio\PersonalBlog\ORM\bin\Debug\ru\EntityFramework.resources.dll
+D:\Projects Visual Studio\PersonalBlog\ORM\obj\Debug\ORM.dll
+D:\Projects Visual Studio\PersonalBlog\ORM\obj\Debug\ORM.pdb
+D:\Projects Visual Studio\PersonalBlog\ORM\obj\Debug\ORM.csprojResolveAssemblyReference.cache

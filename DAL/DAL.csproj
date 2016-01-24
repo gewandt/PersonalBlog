@@ -39,7 +39,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -52,7 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\CustomDbContext.cs" />
+    <Compile Include="Concrete\UnitOfWork.cs" />
+    <Compile Include="Mapper\RoleMapper.cs" />
+    <Compile Include="Mapper\UserMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Repository.cs" />
   </ItemGroup>
@@ -60,6 +62,10 @@
     <ProjectReference Include="..\DAL.Interface\DAL.Interface.csproj">
       <Project>{3b2e7c0b-28b3-4870-be8b-ba38c466a85f}</Project>
       <Name>DAL.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ORM\ORM.csproj">
+      <Project>{f2b8b465-f3f6-4b8e-b7d9-12585f310c5c}</Project>
+      <Name>ORM</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

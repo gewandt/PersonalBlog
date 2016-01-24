@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using BlogEntity.Interfaces;
 using BLL.Interface.Entities;
 using BLL.Interface.Interfaces;
 using BLL.Interface.Services;
 using BLL.Mappers;
 using DAL.Interface.Entities;
+using DAL.Interface.Interfaces;
 using DAL.Interface.Repository;
 
 namespace BLL.Services
 {
-    public class UserService : IService<IBllEntity>
+    public class Service : IService<IBllEntity>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<IDalEntity> _repository;
 
         #region Ctor
-        public UserService(IUnitOfWork unitOfWork)
+        public Service(IUnitOfWork unitOfWork)
         {
             if (unitOfWork == null) throw new ArgumentNullException("unitOfWork");
             _unitOfWork = unitOfWork;
@@ -24,27 +24,28 @@ namespace BLL.Services
         }
         #endregion
 
-        public bool Create(IBllEntity bllUser)
+        public bool Create(IBllEntity bllItem)
         {
-            _repository.Create(bllUser.ToDal());
+            _repository.Create(bllItem.ToDal());
             return true;
         }
 
-        public bool Delete(IBllEntity bllUser)
+        public bool Delete(IBllEntity bllItem)
         {
-            _repository.Delete(bllUser.ToDal());
+            _repository.Delete(bllItem.ToDal());
             return true;
         }
 
-        public bool Update(IBllEntity bllUser)
+        public bool Update(IBllEntity bllItem)
         {
-            _repository.Update(bllUser.ToDal());
+            _repository.Update(bllItem.ToDal());
             return true;
         }
 
         public IBllEntity GetById(int id)
         {
-            //return _userRepository.GetById(id).ToBll();
+            //return _repository.GetById(id).ToBll();
+            throw new NotImplementedException();
         }
 
         public IEnumerable<IBllEntity> GetAll()

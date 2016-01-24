@@ -1,0 +1,17 @@
+D:\Projects Visual Studio\PersonalBlog\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\DAL.dll.config
+D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\DAL.dll
+D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\DAL.pdb
+D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\DAL.Interface.dll
+D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\EntityFramework.dll
+D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\Ninject.dll
+D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\DAL.Interface.pdb
+D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\EntityFramework.xml
+D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\Ninject.xml
+D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\ru\EntityFramework.resources.dll
+D:\Projects Visual Studio\PersonalBlog\DAL\obj\Debug\DAL.dll
+D:\Projects Visual Studio\PersonalBlog\DAL\obj\Debug\DAL.pdb
+D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\ORM.dll
+D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\ORM.pdb

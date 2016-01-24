@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using BlogEntity.Interfaces;
+﻿using System.Collections.Generic;
+using DAL.Interface.Interfaces;
 
 namespace DAL.Interface.Repository
 {
-    public interface IRepository<TEntity> where TEntity : IDalEntity
+    public interface IRepository<TEntity> 
+        where TEntity : IDalEntity
     {
-        bool Create(TEntity entity);
-        bool Delete(TEntity entity);
-        bool Update(TEntity entity);
+        void Create(TEntity entity);
+        void Delete(TEntity entity);
+        void Update(TEntity entity);
         IEnumerable<TEntity> GetAll();
         TEntity GetById(int id);
     }

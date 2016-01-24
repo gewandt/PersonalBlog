@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="da202e5dfc094ad2a0169168161de431" Name="Diagram1">
-        <EntityTypeShape EntityType="BlogDBModel.Articles" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlogDBModel.Blogs" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlogDBModel.Comments" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlogDBModel.Roles" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlogDBModel.Tags" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlogDBModel.Users" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+      <Diagram DiagramId="9f6d8fc48ddd4d05ae909d36baaf21d9" Name="Diagram1">
+        <EntityTypeShape EntityType="BlogDBModel.Article" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlogDBModel.Blog" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlogDBModel.Comment" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlogDBModel.Role" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlogDBModel.Tag" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlogDBModel.User" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="BlogDBModel.FK_Articles_Blogs" ManuallyRouted="false" />
         <AssociationConnector Association="BlogDBModel.FK_Articles_Tags" ManuallyRouted="false" />
         <AssociationConnector Association="BlogDBModel.FK_Comments_Articles" ManuallyRouted="false" />

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using BlogEntity.Interfaces;
 using DAL.Interface.Interfaces;
 using DAL.Interface.Repository;
 
@@ -22,25 +21,22 @@ namespace DAL.Repository
             if (mapper == null) throw new ArgumentNullException("mapper");
             _context = context;
             _mapper = mapper;
-            _dbSet = _context.Set<TEntity>();
+            _dbSet = context.Set<TEntity>();
         } 
-        public bool Create(TDal item)
+        public void Create(TDal item)
         {
             _dbSet.Add(_mapper.ToEntity(item));
-            return true;
         }
 
-        public bool Delete(TDal item)
+        public void Delete(TDal item)
         {
             _dbSet.Remove(_mapper.ToEntity(item));
-            return true;
         }
 
-        public bool Update(TDal item)
+        public void Update(TDal item)
         {
             var itemToUpdate = _dbSet.Find(item.Id);
             _mapper.CopyFields(item, itemToUpdate);
-            return true;
         }
 
         public IEnumerable<TDal> GetAll()

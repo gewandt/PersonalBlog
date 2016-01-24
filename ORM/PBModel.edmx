@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Text" Type="nvarchar" MaxLength="2048" Nullable="false" />
@@ -20,7 +20,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
@@ -28,7 +28,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Text" Type="nvarchar" MaxLength="512" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="ArticleId" Type="int" Nullable="false" />
@@ -38,14 +38,14 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Tags">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ArticleId" Type="int" Nullable="false" />
         </EntityType>
@@ -167,60 +167,60 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BlogDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Articles">
+        <EntityType Name="Article">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Text" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TagId" Type="Int32" Nullable="false" />
           <Property Name="BlogId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Blogs" Relationship="Self.FK_Articles_Blogs" FromRole="Articles" ToRole="Blogs" />
-          <NavigationProperty Name="Tags" Relationship="Self.FK_Articles_Tags" FromRole="Articles" ToRole="Tags" />
+          <NavigationProperty Name="Blog" Relationship="Self.FK_Articles_Blogs" FromRole="Articles" ToRole="Blogs" />
+          <NavigationProperty Name="Tag" Relationship="Self.FK_Articles_Tags" FromRole="Articles" ToRole="Tags" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Articles" FromRole="Articles" ToRole="Comments" />
         </EntityType>
-        <EntityType Name="Blogs">
+        <EntityType Name="Blog">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Articles" Relationship="Self.FK_Articles_Blogs" FromRole="Blogs" ToRole="Articles" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Blogs_Users" FromRole="Blogs" ToRole="Users" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Blogs_Users" FromRole="Blogs" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Comments">
+        <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Text" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="ArticleId" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Articles" Relationship="Self.FK_Comments_Articles" FromRole="Comments" ToRole="Articles" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Comments_Users" FromRole="Comments" ToRole="Users" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_Comments_Articles" FromRole="Comments" ToRole="Articles" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Comments_Users" FromRole="Comments" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Roles">
+        <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Tags">
+        <EntityType Name="Tag">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ArticleId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Articles" Relationship="Self.FK_Articles_Tags" FromRole="Tags" ToRole="Articles" />
         </EntityType>
-        <EntityType Name="Users">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -230,11 +230,11 @@
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Blogs" Relationship="Self.FK_Blogs_Users" FromRole="Users" ToRole="Blogs" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Users" FromRole="Users" ToRole="Comments" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
         </EntityType>
         <Association Name="FK_Articles_Blogs">
-          <End Role="Blogs" Type="Self.Blogs" Multiplicity="1" />
-          <End Role="Articles" Type="Self.Articles" Multiplicity="*" />
+          <End Role="Blogs" Type="Self.Blog" Multiplicity="1" />
+          <End Role="Articles" Type="Self.Article" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Blogs">
               <PropertyRef Name="Id" />
@@ -245,8 +245,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Articles_Tags">
-          <End Role="Tags" Type="Self.Tags" Multiplicity="1" />
-          <End Role="Articles" Type="Self.Articles" Multiplicity="*" />
+          <End Role="Tags" Type="Self.Tag" Multiplicity="1" />
+          <End Role="Articles" Type="Self.Article" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tags">
               <PropertyRef Name="Id" />
@@ -257,8 +257,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Comments_Articles">
-          <End Role="Articles" Type="Self.Articles" Multiplicity="1" />
-          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <End Role="Articles" Type="Self.Article" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Articles">
               <PropertyRef Name="Id" />
@@ -269,8 +269,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Blogs_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Blogs" Type="Self.Blogs" Multiplicity="*" />
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Blogs" Type="Self.Blog" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Id" />
@@ -281,8 +281,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Comments_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Id" />
@@ -293,8 +293,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Users_Roles">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
-          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Roles">
               <PropertyRef Name="Id" />
@@ -305,12 +305,12 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BlogDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Articles" EntityType="Self.Articles" />
-          <EntitySet Name="Blogs" EntityType="Self.Blogs" />
-          <EntitySet Name="Comments" EntityType="Self.Comments" />
-          <EntitySet Name="Roles" EntityType="Self.Roles" />
-          <EntitySet Name="Tags" EntityType="Self.Tags" />
-          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Articles" EntityType="Self.Article" />
+          <EntitySet Name="Blogs" EntityType="Self.Blog" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
+          <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Articles_Blogs" Association="Self.FK_Articles_Blogs">
             <End Role="Blogs" EntitySet="Blogs" />
             <End Role="Articles" EntitySet="Articles" />
@@ -343,7 +343,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище BlogDBModelContainer" CdmEntityContainer="BlogDBEntities">
           <EntitySetMapping Name="Articles">
-            <EntityTypeMapping TypeName="BlogDBModel.Articles">
+            <EntityTypeMapping TypeName="BlogDBModel.Article">
               <MappingFragment StoreEntitySet="Articles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -355,7 +355,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Blogs">
-            <EntityTypeMapping TypeName="BlogDBModel.Blogs">
+            <EntityTypeMapping TypeName="BlogDBModel.Blog">
               <MappingFragment StoreEntitySet="Blogs">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -364,7 +364,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="BlogDBModel.Comments">
+            <EntityTypeMapping TypeName="BlogDBModel.Comment">
               <MappingFragment StoreEntitySet="Comments">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
@@ -375,7 +375,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="BlogDBModel.Roles">
+            <EntityTypeMapping TypeName="BlogDBModel.Role">
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -383,7 +383,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tags">
-            <EntityTypeMapping TypeName="BlogDBModel.Tags">
+            <EntityTypeMapping TypeName="BlogDBModel.Tag">
               <MappingFragment StoreEntitySet="Tags">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -392,7 +392,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="BlogDBModel.Users">
+            <EntityTypeMapping TypeName="BlogDBModel.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -415,7 +415,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
