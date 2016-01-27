@@ -36,6 +36,7 @@ namespace DependencyResolver.Settings
             //kernel.Bind<IMapper<UserSkill, DalUserSkill>>().To<UserSkillMapper>().InSingletonScope();
 
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+            //kernel.Bind<IRepository<DalRoleEntity>>().To<Repository<Role, DalRoleEntity>>();
 
             //kernel.Bind<IService<BllUser>>().To<UserService>().InRequestScope();
             //kernel.Bind<IService<BllRoleEntity>>().To<RoleService>().InRequestScope();

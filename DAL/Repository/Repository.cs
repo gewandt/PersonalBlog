@@ -17,14 +17,16 @@ namespace DAL.Repository
 
         public Repository(DbContext context, IMapper<TEntity, TDal> mapper)
         {
-            if (context == null) throw new ArgumentNullException("context");
-            if (mapper == null) throw new ArgumentNullException("mapper");
+            //if (context == null) throw new ArgumentNullException("context");
+            //if (mapper == null) throw new ArgumentNullException("mapper");
             _context = context;
             _mapper = mapper;
-            _dbSet = context.Set<TEntity>();
+            _dbSet = _context.Set<TEntity>();
         } 
         public void Create(TDal item)
         {
+            //var user = _mapper.ToEntity(item);
+            //_context.Set<TEntity>().Add(user);
             _dbSet.Add(_mapper.ToEntity(item));
         }
 

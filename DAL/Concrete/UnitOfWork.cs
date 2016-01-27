@@ -8,15 +8,16 @@ using DAL.Interface.Entities;
 using DAL.Interface.Interfaces;
 using DAL.Interface.Repository;
 using Ninject;
+using ORM;
 
 namespace DAL.Concrete
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DbContext _context;
-        private IKernel _kernel;
-        private Dictionary<Type, object> repos;
-        private bool isDisposed;
+        private readonly IKernel _kernel;
+        private readonly Dictionary<Type, object> _repos;
+        private bool _isDisposed;
 
         public UnitOfWork(DbContext context, IKernel kernel)
         {
@@ -24,15 +25,15 @@ namespace DAL.Concrete
             if (kernel == null) throw new ArgumentNullException("kernel");
             _context = context;
             _kernel = kernel;
-            repos = new Dictionary<Type, object>();
+            _repos = new Dictionary<Type, object>();
         }
 
         public IRepository<T> GetRepository<T>()
             where T : class, IDalEntity
         {
             object repo;
-            if (!repos.TryGetValue(typeof(T), out repo))
-                repos.Add(typeof(T), repo = _kernel.Get<IRepository<T>>());
+            if (!_repos.TryGetValue(typeof(T), out repo))
+                _repos.Add(typeof(T), repo = _kernel.Get<IRepository<T>>());
             return repo as IRepository<T>;
         }
 
@@ -49,12 +50,12 @@ namespace DAL.Concrete
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!isDisposed)
+            if (!_isDisposed)
             {
                 if (disposing)
                     _context.Dispose();
             }
-            isDisposed = true;
+            _isDisposed = true;
         }
     }
 }

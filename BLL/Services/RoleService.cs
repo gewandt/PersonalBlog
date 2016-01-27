@@ -21,7 +21,7 @@ namespace BLL.Services
         {
             if (unitOfWork == null) throw new ArgumentNullException("unitOfWork");
             _unitOfWork = unitOfWork;
-            _repository = unitOfWork.GetRepository<DalRoleEntity>();
+            _repository = _unitOfWork.GetRepository<DalRoleEntity>();
         }
         #endregion
         public void Create(string name)

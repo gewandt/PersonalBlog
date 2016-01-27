@@ -18,8 +18,10 @@ namespace WebUI.Controllers
             this.userService = userService;
             this.roleService = roleService;
         }
+        //[HttpPost]
         public ActionResult Login()
         {
+            roleService.Create("user3");
             return View();
         }
 

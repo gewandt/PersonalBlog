@@ -22,25 +22,15 @@ namespace ConsoleUI
 {
     class Program
     {
+        public static IKernel kernel = new StandardKernel();
         static void Main(string[] args)
         {
-            //DbContext _db = new BlogDBEntities();
-            IKernel kernel = new StandardKernel();
-            ResolverSettings.Configure(kernel);
-            //UnitOfWork uow = new UnitOfWork(_db, kernel);
+            kernel.Configure();
 
-            //IUserService us = new UserService(uow);
-            IRoleService rs =  kernel.Get<IRoleService>();
-            rs.Create("user3");
+            var rs = kernel.Get<IRoleService>();
+            rs.Create("user4");
             var role = rs.GetById(1);
             Console.WriteLine(role.Name);
-            //rs.Dispose();
-            //_db.SaveChanges();
-            //us.Create("testuser", "1234");
-
-            //Console.WriteLine("{0} {1} {2} {3}", test.Id, test.Name, test.BllRole.Id, test.Password);
-            //_db.SaveChanges();
-
             using (BlogDBEntities db = new BlogDBEntities())
             {
                 var roles = db.Roles;

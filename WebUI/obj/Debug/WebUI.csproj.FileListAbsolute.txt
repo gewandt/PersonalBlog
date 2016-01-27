@@ -41,3 +41,15 @@ D:\Projects Visual Studio\PersonalBlog\WebUI\bin\BLL.Interface.pdb
 D:\Projects Visual Studio\PersonalBlog\WebUI\bin\Ninject.xml
 D:\Projects Visual Studio\PersonalBlog\WebUI\bin\Ninject.Web.xml
 D:\Projects Visual Studio\PersonalBlog\WebUI\bin\Ninject.Web.Common.xml
+D:\Projects Visual Studio\PersonalBlog\WebUI\bin\DependencyResolver.dll
+D:\Projects Visual Studio\PersonalBlog\WebUI\bin\ORM.dll
+D:\Projects Visual Studio\PersonalBlog\WebUI\bin\DAL.Interface.dll
+D:\Projects Visual Studio\PersonalBlog\WebUI\bin\DAL.dll
+D:\Projects Visual Studio\PersonalBlog\WebUI\bin\BLL.dll
+D:\Projects Visual Studio\PersonalBlog\WebUI\bin\DependencyResolver.pdb
+D:\Projects Visual Studio\PersonalBlog\WebUI\bin\ORM.pdb
+D:\Projects Visual Studio\PersonalBlog\WebUI\bin\DAL.Interface.pdb
+D:\Projects Visual Studio\PersonalBlog\WebUI\bin\DAL.pdb
+D:\Projects Visual Studio\PersonalBlog\WebUI\bin\BLL.pdb
+D:\Projects Visual Studio\PersonalBlog\WebUI\bin\EntityFramework.SqlServer.dll
+D:\Projects Visual Studio\PersonalBlog\WebUI\bin\EntityFramework.SqlServer.xml

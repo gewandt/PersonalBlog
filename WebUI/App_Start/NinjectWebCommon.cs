@@ -1,3 +1,7 @@
+using System.Web.Mvc;
+using WebUI.Infrastructure;
+using DependencyResolver = System.Web.Mvc.DependencyResolver;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WebUI.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(WebUI.App_Start.NinjectWebCommon), "Stop")]
 
@@ -13,7 +17,7 @@ namespace WebUI.App_Start
 
     public static class NinjectWebCommon 
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        private static readonly Bootstrapper _bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
@@ -22,7 +26,7 @@ namespace WebUI.App_Start
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+            _bootstrapper.Initialize(CreateKernel);
         }
         
         /// <summary>
@@ -30,7 +34,7 @@ namespace WebUI.App_Start
         /// </summary>
         public static void Stop()
         {
-            bootstrapper.ShutDown();
+            _bootstrapper.ShutDown();
         }
         
         /// <summary>
@@ -61,6 +65,7 @@ namespace WebUI.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            System.Web.Mvc.DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }        
     }
 }
