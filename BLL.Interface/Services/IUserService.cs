@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using BLL.Interface.Entities;
@@ -13,5 +14,6 @@ namespace BLL.Interface.Services
         bool Update(BllUserEntity item);
         bool Delete(int id);
         IEnumerable<BllUserEntity> GetAll();
+        BllUserEntity Find(string name);
     }
 }

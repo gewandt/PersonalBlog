@@ -12,5 +12,6 @@ namespace BLL.Interface.Services
         void Create(string name);
         bool ResetToDefault(int id);
         BllRoleEntity GetById(int id);
+        BllRoleEntity GetByName(string name);
     }
 }

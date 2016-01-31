@@ -1,11 +1,12 @@
-﻿using BLL.Interface.Entities;
+﻿using AutoMapper;
+using BLL.Interface.Entities;
 using BLL.Interface.Interfaces;
 using DAL.Interface.Entities;
 using DAL.Interface.Interfaces;
 
 namespace BLL.Mappers
 {
-    public static class Mapper
+    public static class MapperProperty
     {
         #region BLL to DAL
 
@@ -35,7 +36,21 @@ namespace BLL.Mappers
             return null;
         }
 
-        private static DalRoleEntity ToDal(this BllRoleEntity itemRoleEntity)
+        public static DalUserEntity ToDal(this BllUserEntity itemUserEntity)
+        {
+            if (itemUserEntity == null)
+                return null;
+
+            DalUserEntity dalUserEntity = new DalUserEntity
+            {
+                Id = itemUserEntity.Id,
+                Name = itemUserEntity.Name,
+                Password = itemUserEntity.Password,
+                DalRole = itemUserEntity.BllRole.ToDal()
+            };
+            return dalUserEntity;
+        }
+        public static DalRoleEntity ToDal(this BllRoleEntity itemRoleEntity)
         {
             if (itemRoleEntity == null)
                 return null;
@@ -60,6 +75,20 @@ namespace BLL.Mappers
             {
                 Id = role.Id,
                 Name = role.Name
+            };
+        }
+
+        public static BllUserEntity ToBal(this DalUserEntity user)
+        {
+            if (user == null)
+                return null;
+
+            return new BllUserEntity
+            {
+                Id = user.Id,
+                Name = user.Name,
+                BllRole = user.DalRole.ToBal(),
+                Password = user.Password
             };
         }
 

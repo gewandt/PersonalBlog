@@ -4,26 +4,44 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BLL.Interface.Services;
+using WebUI.Models;
 
 namespace WebUI.Controllers
 {
     [AllowAnonymous]
     public class AccountController : Controller
     {
-        private readonly IUserService userService;
-        private readonly IRoleService roleService;
+        private readonly IUserService _userService;
+        private readonly IRoleService _roleService;
 
         public AccountController(IUserService userService, IRoleService roleService)
         {
-            this.userService = userService;
-            this.roleService = roleService;
+            _userService = userService;
+            _roleService = roleService;
         }
-        //[HttpPost]
         public ActionResult Login()
         {
-            roleService.Create("user3");
             return View();
         }
 
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterUserModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_userService.Find(model.Name) == null)
+                {
+                    _userService.Create(model.Name, model.Password);
+                    return View("RegistrationSuccessful");
+                }
+                ModelState.AddModelError("", "username are denied");
+            }
+            return View(model);
+        }
     }
 }

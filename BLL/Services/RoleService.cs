@@ -19,6 +19,7 @@ namespace BLL.Services
         #region Ctor
         public RoleService(IUnitOfWork unitOfWork)
         {
+            MapperProperty.Configure();
             if (unitOfWork == null) throw new ArgumentNullException("unitOfWork");
             _unitOfWork = unitOfWork;
             _repository = _unitOfWork.GetRepository<DalRoleEntity>();
@@ -43,6 +44,11 @@ namespace BLL.Services
         public BllRoleEntity GetById(int id)
         {
             return _repository.GetById(id).ToBal();
+        }
+
+        public BllRoleEntity GetByName(string name)
+        {
+            return _repository.Find(c => c.Name == "User").ToBal();
         }
 
         public void Dispose()

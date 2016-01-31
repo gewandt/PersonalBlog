@@ -8,7 +8,7 @@ using DAL.Concrete;
 using DAL.Interface.Entities;
 using DAL.Interface.Interfaces;
 using DAL.Interface.Repository;
-using DAL.Mapper;
+using DAL.Mappers;
 using DAL.Repository;
 using Ninject;
 using Ninject.Web.Common;

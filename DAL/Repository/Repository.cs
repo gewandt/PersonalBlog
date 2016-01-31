@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
+using DAL.Interface;
 using DAL.Interface.Interfaces;
 using DAL.Interface.Repository;
 
 namespace DAL.Repository
 {
     public class Repository<TEntity, TDal> : IRepository<TDal> 
-        where TEntity : class 
+        where TEntity : class
         where TDal : IDalEntity
     {
         private readonly DbContext _context;
@@ -17,16 +19,14 @@ namespace DAL.Repository
 
         public Repository(DbContext context, IMapper<TEntity, TDal> mapper)
         {
-            //if (context == null) throw new ArgumentNullException("context");
-            //if (mapper == null) throw new ArgumentNullException("mapper");
+            if (context == null) throw new ArgumentNullException("context");
+            if (mapper == null) throw new ArgumentNullException("mapper");
             _context = context;
             _mapper = mapper;
             _dbSet = _context.Set<TEntity>();
         } 
         public void Create(TDal item)
         {
-            //var user = _mapper.ToEntity(item);
-            //_context.Set<TEntity>().Add(user);
             _dbSet.Add(_mapper.ToEntity(item));
         }
 
@@ -49,6 +49,19 @@ namespace DAL.Repository
         public TDal GetById(int id)
         {
             return _mapper.ToDal(_dbSet.Find(id));
+        }
+
+        public TDal Find(Expression<Func<TDal, bool>> predicate)
+        {
+            //return _mapper.ToDal(_dbSet.FirstOrDefault(c => c.Name));
+            throw new NotImplementedException();
+        }
+
+        public TDal GetByPredicate(Expression<Func<TDal, bool>> predicate)
+        {
+            var result = _mapper.ToDal(_dbSet.Where(ExpressionMapper<TDal, TEntity, bool>.Map(predicate))
+                .AsEnumerable().First());
+            return result;
         }
     }
 }

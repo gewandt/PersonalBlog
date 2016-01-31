@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Interface.Entities;
 using DAL.Interface.Interfaces;
 using ORM;
 
-namespace DAL.Mapper
+namespace DAL.Mappers
 {
     public class RoleMapper : IMapper<Role, DalRoleEntity>
     {
@@ -34,5 +35,6 @@ namespace DAL.Mapper
         {
             throw new NotImplementedException();
         }
+
     }
 }

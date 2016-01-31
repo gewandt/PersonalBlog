@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
+using BLL.Mappers;
 using DAL.Interface.Entities;
-using DAL.Interface.Interfaces;
 using DAL.Interface.Repository;
 
 namespace BLL.Services
@@ -14,32 +13,35 @@ namespace BLL.Services
     public class UserService : IUserService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IRepository<DalUserEntity> _repository;
+        private readonly IRepository<DalUserEntity> _userRepository;
+        private readonly IRepository<DalRoleEntity> _roleRepository; 
 
         #region Ctor
+
         public UserService(IUnitOfWork unitOfWork)
         {
+            MapperProperty.Configure();
             if (unitOfWork == null) throw new ArgumentNullException("unitOfWork");
             _unitOfWork = unitOfWork;
-            _repository = _unitOfWork.GetRepository<DalUserEntity>();
+            _userRepository = _unitOfWork.GetRepository<DalUserEntity>();
+            _roleRepository = _unitOfWork.GetRepository<DalRoleEntity>();
         }
+
         #endregion
         public void Create(string name, string password)
         {
-            Create(new DalUserEntity
+            var role = _roleRepository.GetByPredicate(c => c.Name == "User");
+            Create(new BllUserEntity
             {
                 Name = name,
                 Password = password,
-                DalRole = new DalRoleEntity
-                {
-                    Name = "user"
-                }
+                BllRole = role.ToBal()
             });
         }
 
-        private void Create(DalUserEntity user)
+        private void Create(BllUserEntity user)
         {
-            _repository.Create(user);
+            _userRepository.Create(user.ToDal());
             _unitOfWork.Commit();
         }
 
@@ -56,6 +58,11 @@ namespace BLL.Services
         public IEnumerable<BllUserEntity> GetAll()
         {
             throw new NotImplementedException();
+        }
+
+        public BllUserEntity Find(string name)
+        {
+            return null;
         }
     }
 }
