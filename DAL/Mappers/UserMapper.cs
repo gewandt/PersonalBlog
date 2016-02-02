@@ -35,5 +35,15 @@ namespace DAL.Mappers
         {
             throw new NotImplementedException();
         }
+
+        public void CopyFields(DalUserEntity dalFrom, User entityTo)
+        {
+            if (dalFrom == null || entityTo == null)
+                return;
+            entityTo.Id = dalFrom.Id;
+            entityTo.Name = dalFrom.Name;
+            entityTo.Password = dalFrom.Password;
+            entityTo.RoleId = dalFrom.DalRole.Id;
+        }
     }
 }

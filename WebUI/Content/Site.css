@@ -31,7 +31,7 @@ p {
 
 /* Links */
 a {
-    color: #008b8b;
+    color: #ffffff;
     word-wrap: break-word;
 
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -43,7 +43,7 @@ a {
 
 a:hover,
 a:focus {
-    color: #008000;
+    color: #ffffff;
     text-decoration: none;
     outline: 0;
 }
@@ -156,6 +156,10 @@ a:after {
 	color: #008b8b;
 	font-size: 12px;
 	padding: 5px;
+}
+
+.nopadding {
+    padding: 0px 0px;
 }
 
 

@@ -32,13 +32,15 @@ namespace DAL.Repository
 
         public void Delete(TDal item)
         {
-            _dbSet.Remove(_mapper.ToEntity(item));
+            TEntity entity = _dbSet.Find(item.Id);
+            if (entity != null)
+                _dbSet.Remove(entity);
         }
 
         public void Update(TDal item)
         {
             var itemToUpdate = _dbSet.Find(item.Id);
-            //_mapper.CopyFields(item, itemToUpdate);
+            _mapper.CopyFields(item, itemToUpdate);
         }
 
         public IEnumerable<TDal> GetAll()

@@ -9,7 +9,6 @@
     <link href="~/Content/Site.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Fixed navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -22,32 +21,73 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="@Url.Action("Home", "Home")">HOME</a></li>
-                    <li><a href="@Url.Action("Home", "Home")">BLOGS</a></li>
+                    @if(ViewContext.HttpContext.User.IsInRole("Admin"))
+                    {
+                        <li>
+                            <div class="btn btn-lg nopadding">
+                                @Html.ActionLink("CONTROL PANEL", "Control", "Management", null, new { @class = "btn btn-lg" })
+                            </div>
+                        </li>
+                    }
                     <li>
-                        <a href="@Url.Action("Login", "Account")">LOG IN</a>
-                        @*@Html.ActionLink("actionLinkLogin", "Login", "Account")*@
+                        <div class="btn btn-lg nopadding">
+                            @Html.ActionLink("HOME", "Home", "Home", null , new {@class = "btn btn-lg"})
+                        </div>
                     </li>
-                    <li><a href="@Url.Action("Register", "Account")">SIGN IN <i class="fa fa-sign-in"></i></a></li>
-                </ul>
+                    <li>
+                    <li>
+                        <div class="btn btn-lg nopadding">
+                            @Html.ActionLink("BLOGS", "Register", "Account", null, new { @class = "btn btn-lg" })
+                        </div>
+                    </li>
+                        @if (Request.IsAuthenticated)
+                        {
+                            <li>
+                                <div class="btn btn-lg nopadding">
+                                    @Html.ActionLink("LOG OUT", "Logoff", "Account", null, new {@class = "btn btn-lg"})
+                                </div>
+                            </li>
+                            <li>
+                                <div class="btn btn-lg" style="color: #ffffff; background-color: #2f4f4f">
+                                    @{
+                                        var username = HttpContext.Current.User.Identity.Name;
+                                    }
+                                    @username
+                                </div>
+                                
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <div class="btn btn-lg nopadding">
+                                    @Html.ActionLink("LOG IN", "Login", "Account", null, new { @class = "btn btn-lg" })
+                                </div>
+                            </li>
+                            <li>
+                                <div class="btn btn-lg nopadding">
+                                    @Html.ActionLink("SIGN IN", "Register", "Account", null, new { @class = "btn btn-lg" })
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container centered w">
-        @RenderBody()
-    </div>
-    <!-- Footer -->
-    <div id="f">
-        <div class="container">
-            <div class="row centered">
-                <a href="#"><i class="fa fa-vk"></i></a>
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-apple"></i></a>
-                <p>&copy;&nbsp;@DateTime.Now.Year&nbsp;Bugblog - All rights reserved.</p>
+        <div class="container centered w">
+            @RenderBody()
+        </div>
+        <div id="f">
+            <div class="container">
+                <div class="row centered">
+                    <a href="#"><i class="fa fa-vk"></i></a>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-apple"></i></a>
+                    <p>&copy;&nbsp;@DateTime.Now.Year&nbsp;Bugblog - All rights reserved.</p>
+                </div>
             </div>
         </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-</body>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+    </body>
 </html>

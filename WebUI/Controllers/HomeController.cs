@@ -11,7 +11,7 @@ namespace WebUI.Controllers
         public ActionResult Index()
         {
             int hour = DateTime.Now.Hour;
-            ViewBag.Hour = hour > 12 ? "p.m." : "a.m.";
+            ViewBag.Hour = hour;
             return View();
         }
 

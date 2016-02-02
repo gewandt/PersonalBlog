@@ -1,0 +1,27 @@
+﻿@model IEnumerable<BLL.Interface.Entities.BllUserEntity>
+@{
+    ViewBag.Title = "List of users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Control user panel</h2>
+<div class="container w" align="center">
+    <table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>
+                    <h2 class="centered">@Html.DisplayFor(modelItem => item.Name)</h2>
+                </th>
+                <th style="width: 20px"></th>
+                <th>
+                    @Html.ActionLink("Edit", "Edit", "Management", new { @item }, new { @class = "btn btn-lg", @style = "background-color: #32cd32" })
+                </th>
+                <th style="width: 20px"></th>
+                <th>
+                    @Html.ActionLink("Delete", "Delete", "Management", new {@id = item.Id}, new {@class = "btn btn-lg", @style = "background-color: red"})
+                </th>
+            </tr>
+        }
+    </table>
+</div>

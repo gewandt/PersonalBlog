@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
 using BLL.Mappers;
@@ -43,17 +44,33 @@ namespace BLL.Services
 
         public bool Update(BllUserEntity item)
         {
-            throw new NotImplementedException();
+            var user = _userRepository.GetById(item.Id);
+            if (user == null)
+                return false;
+            _userRepository.Update(user);
+            _unitOfWork.Commit();
+            return true;
         }
 
-        public bool Delete(int id)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var user = _userRepository.GetById(id);
+            if (user == null)
+                return;
+            _userRepository.Delete(user);
+            _unitOfWork.Commit();
         }
 
         public IEnumerable<BllUserEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAll().Select(c => c.ToBal());
+        }
+
+        public string GetRole(string login)
+        {
+            return _userRepository.GetByPredicate(c => c.Name == login).ToBal()
+                .BllRole
+                .Name;
         }
 
         public BllUserEntity Contains(string login)

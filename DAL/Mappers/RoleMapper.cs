@@ -31,5 +31,10 @@ namespace DAL.Mappers
         {
             throw new NotImplementedException();
         }
+
+        public void CopyFields(DalRoleEntity dalEntity, Role entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

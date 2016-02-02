@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using BLL.Interface.Entities;
 using BLL.Interface.Services;
 using WebUI.Models;
 
@@ -24,7 +25,6 @@ namespace WebUI.Controllers
         {
             return View();
         }
-
         public ActionResult Register()
         {
             return View();
@@ -45,18 +45,23 @@ namespace WebUI.Controllers
             return View(model);
         }
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public ActionResult Login(string login, string password, bool remember=true /*,string returnUrl*/)
+        public ActionResult Login(string login, string password, bool remember = true)
         {
             if (ModelState.IsValid && _userService.Contains(login, password))
             {
                 FormsAuthentication.SetAuthCookie(login, remember);
-                //if (Url.IsLocalUrl(returnUrl))
-                //    return Redirect(returnUrl);
+                //ViewBag.Role = _userService.GetRole(login);
+                //return View("Error");
                 return RedirectToAction("Index", "Home");
             }
             ModelState.AddModelError("", "Wrong login or password");
             return View();
+        }
+
+        public ActionResult Logoff()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Home", "Home");
         }
     }
 }

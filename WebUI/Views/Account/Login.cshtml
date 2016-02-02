@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Log In</h2>
+<h2>LOG IN TO BUGBLOG</h2>
 @using (Html.BeginForm())
 {
     <h4 class="text-danger">@Html.ValidationSummary()</h4>
@@ -22,6 +22,6 @@
     
 }
 <div class="col-md-">
-    <h3>Don`t have account?</h3>
-        @Html.ActionLink("Register", "Register")
+    <h3>Not a member yet?</h3>
+        @Html.ActionLink("SIGN IN", "Register", null, new { @class = "btn btn-info" })
 </div>

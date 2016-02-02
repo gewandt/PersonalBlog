@@ -12,8 +12,9 @@ namespace BLL.Interface.Services
     {
         void Create(string name, string password, BllRoleEntity role);
         bool Update(BllUserEntity item);
-        bool Delete(int id);
+        void Delete(int id);
         IEnumerable<BllUserEntity> GetAll();
+        string GetRole(string login);
         bool Contains(string login, string password);
         BllUserEntity Contains(string login);
     }
