@@ -16,11 +16,7 @@ namespace DAL.Mappers
         {
             if (item == null)
                 return null;
-            Role roleEntity = new Role
-            {
-                Id = item.Id,
-                Name = item.Name
-            };
+            Role roleEntity = item.ToModel();
             return roleEntity;
         }
 
@@ -31,10 +27,9 @@ namespace DAL.Mappers
             return new DalRoleEntity { Id = entity.Id, Name = entity.Name };
         }
 
-        public void CopyFields(DalRoleEntity item, Role entity)
+        public IEnumerable<DalRoleEntity> ToDalCollection(IEnumerable<Role> entity)
         {
             throw new NotImplementedException();
         }
-
     }
 }

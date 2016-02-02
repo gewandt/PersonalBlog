@@ -2249,7 +2249,7 @@ fieldset[disabled] .btn {
 
 .btn-default {
   color: #333333;
-  background-color: #ffffff;
+  background-color: #3276B1;
   border-color: #cccccc;
 }
 
@@ -2259,7 +2259,7 @@ fieldset[disabled] .btn {
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
   color: #333333;
-  background-color: #ebebeb;
+  background-color: #008000;
   border-color: #adadad;
 }
 

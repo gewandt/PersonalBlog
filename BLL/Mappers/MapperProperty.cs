@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BLL.Interface.Entities;
+﻿using BLL.Interface.Entities;
 using BLL.Interface.Interfaces;
 using DAL.Interface.Entities;
 using DAL.Interface.Interfaces;
@@ -12,27 +11,27 @@ namespace BLL.Mappers
 
         public static IDalEntity ToDal(this IBllEntity itemEntity)
         {
-            if (itemEntity == null)
-                return null;
+            //if (itemEntity == null)
+            //    return null;
 
-            if (itemEntity is BllUserEntity)
-            {
-                var itemUserEntity = (BllUserEntity)itemEntity;
-                DalUserEntity dalUserEntity = new DalUserEntity();
-                dalUserEntity.Id = itemUserEntity.Id;
-                dalUserEntity.Name = itemUserEntity.Name;
-                dalUserEntity.Password = itemUserEntity.Password;
-                dalUserEntity.DalRole = itemUserEntity.BllRole.ToDal();
-                return dalUserEntity;
-            }
-            if (itemEntity is BllRoleEntity)
-            {
-                var itemRoleEntity = (BllRoleEntity)itemEntity;
-                DalRoleEntity dalRoleEntity = new DalRoleEntity();
-                dalRoleEntity.Id = itemRoleEntity.Id;
-                dalRoleEntity.Name = itemRoleEntity.Name;
-                return dalRoleEntity;
-            }
+            //if (itemEntity is BllUserEntity)
+            //{
+            //    var itemUserEntity = (BllUserEntity)itemEntity;
+            //    DalUserEntity dalUserEntity = new DalUserEntity();
+            //    dalUserEntity.Id = itemUserEntity.Id;
+            //    dalUserEntity.Name = itemUserEntity.Name;
+            //    dalUserEntity.Password = itemUserEntity.Password;
+            //    dalUserEntity.DalRole = itemUserEntity.BllRole.ToDal();
+            //    return dalUserEntity;
+            //}
+            //if (itemEntity is BllRoleEntity)
+            //{
+            //    var itemRoleEntity = (BllRoleEntity)itemEntity;
+            //    DalRoleEntity dalRoleEntity = new DalRoleEntity();
+            //    dalRoleEntity.Id = itemRoleEntity.Id;
+            //    dalRoleEntity.Name = itemRoleEntity.Name;
+            //    return dalRoleEntity;
+            //}
             return null;
         }
 
@@ -87,8 +86,8 @@ namespace BLL.Mappers
             {
                 Id = user.Id,
                 Name = user.Name,
+                Password = user.Password,
                 BllRole = user.DalRole.ToBal(),
-                Password = user.Password
             };
         }
 

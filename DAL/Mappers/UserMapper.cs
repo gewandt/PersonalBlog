@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using DAL.Interface.Entities;
 using DAL.Interface.Interfaces;
 using ORM;
@@ -13,24 +12,26 @@ namespace DAL.Mappers
         {
             if (item == null)
                 return null;
-            User userEntity = new User();
-            userEntity.Id = item.Id;
-            userEntity.Name = item.Name;
-            userEntity.Password = item.Password;
-            userEntity.Role = new Role
-            {
-                Id = item.DalRole.Id,
-                Name = item.DalRole.Name
-            };
+
+            User userEntity = item.ToModel();
             return userEntity;
         }
 
         public DalUserEntity ToDal(User entity)
         {
+            if (entity == null)
+                return null;
+
+            DalUserEntity userEntity = entity.ToDal();
+            return userEntity;
+        }
+
+        public User ToDal(DalUserEntity entity)
+        {
             throw new NotImplementedException();
         }
 
-        public void CopyFields(DalUserEntity item, User entity)
+        public IEnumerable<DalUserEntity> ToDalCollection(IEnumerable<User> entity)
         {
             throw new NotImplementedException();
         }

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
 using BLL.Mappers;
@@ -14,13 +12,12 @@ namespace BLL.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<DalUserEntity> _userRepository;
-        private readonly IRepository<DalRoleEntity> _roleRepository; 
+        private readonly IRepository<DalRoleEntity> _roleRepository;
 
         #region Ctor
 
         public UserService(IUnitOfWork unitOfWork)
         {
-            MapperProperty.Configure();
             if (unitOfWork == null) throw new ArgumentNullException("unitOfWork");
             _unitOfWork = unitOfWork;
             _userRepository = _unitOfWork.GetRepository<DalUserEntity>();
@@ -28,14 +25,13 @@ namespace BLL.Services
         }
 
         #endregion
-        public void Create(string name, string password)
+        public void Create(string name, string password, BllRoleEntity role)
         {
-            var role = _roleRepository.GetByPredicate(c => c.Name == "User");
             Create(new BllUserEntity
             {
                 Name = name,
                 Password = password,
-                BllRole = role.ToBal()
+                BllRole = role
             });
         }
 
@@ -60,9 +56,15 @@ namespace BLL.Services
             throw new NotImplementedException();
         }
 
-        public BllUserEntity Find(string name)
+        public BllUserEntity Contains(string login)
         {
-            return null;
+            return _userRepository.GetByPredicate(c => c.Name == login).ToBal();
+        }
+        public bool Contains(string login, string password)
+        {
+            var user = Contains(login);
+            if (user == null) return false;
+            return user.Password == password;
         }
     }
 }

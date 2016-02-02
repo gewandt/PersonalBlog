@@ -18,7 +18,6 @@ namespace BLL.Services
         #region Ctor
         public Service(IUnitOfWork unitOfWork)
         {
-            MapperProperty.Configure();
             if (unitOfWork == null) throw new ArgumentNullException("unitOfWork");
             _unitOfWork = unitOfWork;
             _repository = _unitOfWork.GetRepository<IDalEntity>();

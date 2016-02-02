@@ -38,7 +38,7 @@ namespace DAL.Repository
         public void Update(TDal item)
         {
             var itemToUpdate = _dbSet.Find(item.Id);
-            _mapper.CopyFields(item, itemToUpdate);
+            //_mapper.CopyFields(item, itemToUpdate);
         }
 
         public IEnumerable<TDal> GetAll()
@@ -51,17 +51,9 @@ namespace DAL.Repository
             return _mapper.ToDal(_dbSet.Find(id));
         }
 
-        public TDal Find(Expression<Func<TDal, bool>> predicate)
-        {
-            //return _mapper.ToDal(_dbSet.FirstOrDefault(c => c.Name));
-            throw new NotImplementedException();
-        }
-
         public TDal GetByPredicate(Expression<Func<TDal, bool>> predicate)
         {
-            var result = _mapper.ToDal(_dbSet.Where(ExpressionMapper<TDal, TEntity, bool>.Map(predicate))
-                .AsEnumerable().First());
-            return result;
+            return _mapper.ToDal(_dbSet.FirstOrDefault(ExpressionMapper<TDal, TEntity, bool>.Map(predicate)));
         }
     }
 }

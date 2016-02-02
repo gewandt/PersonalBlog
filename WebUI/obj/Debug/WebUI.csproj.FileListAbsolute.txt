@@ -53,5 +53,3 @@ D:\Projects Visual Studio\PersonalBlog\WebUI\bin\DAL.pdb
 D:\Projects Visual Studio\PersonalBlog\WebUI\bin\BLL.pdb
 D:\Projects Visual Studio\PersonalBlog\WebUI\bin\EntityFramework.SqlServer.dll
 D:\Projects Visual Studio\PersonalBlog\WebUI\bin\EntityFramework.SqlServer.xml
-D:\Projects Visual Studio\PersonalBlog\WebUI\bin\AutoMapper.dll
-D:\Projects Visual Studio\PersonalBlog\WebUI\bin\AutoMapper.xml

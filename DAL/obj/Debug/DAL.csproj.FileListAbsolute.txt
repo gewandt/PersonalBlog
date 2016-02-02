@@ -15,5 +15,3 @@ D:\Projects Visual Studio\PersonalBlog\DAL\obj\Debug\DAL.dll
 D:\Projects Visual Studio\PersonalBlog\DAL\obj\Debug\DAL.pdb
 D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\ORM.dll
 D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\ORM.pdb
-D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\AutoMapper.dll
-D:\Projects Visual Studio\PersonalBlog\DAL\bin\Debug\AutoMapper.xml

@@ -23,5 +23,3 @@ D:\Projects Visual Studio\PersonalBlog\DependencyResolver\bin\Debug\BLL.pdb
 D:\Projects Visual Studio\PersonalBlog\DependencyResolver\bin\Debug\DAL.Interface.pdb
 D:\Projects Visual Studio\PersonalBlog\DependencyResolver\bin\Debug\DAL.pdb
 D:\Projects Visual Studio\PersonalBlog\DependencyResolver\bin\Debug\ORM.pdb
-D:\Projects Visual Studio\PersonalBlog\DependencyResolver\bin\Debug\AutoMapper.dll
-D:\Projects Visual Studio\PersonalBlog\DependencyResolver\bin\Debug\AutoMapper.xml

@@ -10,10 +10,11 @@ namespace BLL.Interface.Services
 {
     public interface IUserService
     {
-        void Create(string name, string password);
+        void Create(string name, string password, BllRoleEntity role);
         bool Update(BllUserEntity item);
         bool Delete(int id);
         IEnumerable<BllUserEntity> GetAll();
-        BllUserEntity Find(string name);
+        bool Contains(string login, string password);
+        BllUserEntity Contains(string login);
     }
 }

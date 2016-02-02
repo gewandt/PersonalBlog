@@ -13,7 +13,6 @@ namespace DAL.Interface.Repository
         void Update(TEntity entity);
         IEnumerable<TEntity> GetAll();
         TEntity GetById(int id);
-        TEntity Find(Expression<Func<TEntity, bool>> predicate);
         TEntity GetByPredicate(Expression<Func<TEntity, bool>> predicate);
     }
 }

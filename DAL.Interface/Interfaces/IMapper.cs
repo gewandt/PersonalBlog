@@ -8,6 +8,6 @@ namespace DAL.Interface.Interfaces
     {
         TEntity ToEntity(TDal item);
         TDal ToDal(TEntity entity);
-        void CopyFields(TDal item, TEntity entity);
+        IEnumerable<TDal> ToDalCollection(IEnumerable<TEntity> entity);
     }
 }

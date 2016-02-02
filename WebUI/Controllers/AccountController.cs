@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using BLL.Interface.Services;
 using WebUI.Models;
 
@@ -34,14 +35,28 @@ namespace WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_userService.Find(model.Name) == null)
+                if (_userService.Contains(model.Name) == null)
                 {
-                    _userService.Create(model.Name, model.Password);
+                    _userService.Create(model.Name, model.Password, _roleService.GetByName("User"));
                     return View("RegistrationSuccessful");
                 }
                 ModelState.AddModelError("", "username are denied");
             }
             return View(model);
+        }
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Login(string login, string password, bool remember=true /*,string returnUrl*/)
+        {
+            if (ModelState.IsValid && _userService.Contains(login, password))
+            {
+                FormsAuthentication.SetAuthCookie(login, remember);
+                //if (Url.IsLocalUrl(returnUrl))
+                //    return Redirect(returnUrl);
+                return RedirectToAction("Index", "Home");
+            }
+            ModelState.AddModelError("", "Wrong login or password");
+            return View();
         }
     }
 }
