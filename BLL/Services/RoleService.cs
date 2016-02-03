@@ -52,6 +52,11 @@ namespace BLL.Services
             return _repository.GetByPredicate(x => x.Name == name).ToBal();
         }
 
+        public IEnumerable<BllRoleEntity> GetAll()
+        {
+            return _repository.GetAll().Select(c => c.ToBal());
+        }
+
         public void Dispose()
         {
             _unitOfWork.Dispose();

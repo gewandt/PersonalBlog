@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
+using WebUI.Models;
 
 namespace WebUI.Controllers
 {
@@ -35,9 +36,45 @@ namespace WebUI.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit(BllUserEntity itemUser)
+        public ActionResult Edit(string login)
         {
-            _userService.Update(itemUser);
+            var roles = _roleService.GetAll().ToList();
+            ViewBag.Roles = new SelectList(roles, "Id", "Name");
+            if (login != null)
+            {
+                var itemUser = _userService.Contains(login);
+                return PartialView("Edit", itemUser);
+            }
+            return RedirectToAction("Control");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(BllUserEntity itemUser, int role)
+        {
+            if (itemUser != null)
+            {
+                // for moderator set indexes from one in DB, with 22 don`t work
+                itemUser.BllRole = _roleService.GetById(role);
+                _userService.Update(itemUser);
+            }
+            return RedirectToAction("Control");
+        }
+        [Authorize(Roles = "Admin")]
+        public ActionResult Create()
+        {
+            var user = new BllUserEntity();
+            var roles = _roleService.GetAll().ToList();
+            ViewBag.Roles = new SelectList(roles, "Id", "Name");
+            return PartialView("Create", user);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(BllUserEntity itemUser, int role)
+        {
+            //too work with 1,2,3 numbering on DB
+            itemUser.BllRole = _roleService.GetById(role);
+            _userService.Create(itemUser.Name, itemUser.Password, itemUser.BllRole);
             return RedirectToAction("Control");
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
 using BLL.Mappers;
@@ -47,7 +48,7 @@ namespace BLL.Services
             var user = _userRepository.GetById(item.Id);
             if (user == null)
                 return false;
-            _userRepository.Update(user);
+            _userRepository.Update(item.ToDal());
             _unitOfWork.Commit();
             return true;
         }
@@ -68,7 +69,10 @@ namespace BLL.Services
 
         public string GetRole(string login)
         {
-            return _userRepository.GetByPredicate(c => c.Name == login).ToBal()
+            var user = _userRepository.GetByPredicate(c => c.Name == login);
+            if (user == null)
+                return string.Empty;
+            return user.ToBal()
                 .BllRole
                 .Name;
         }
@@ -77,6 +81,7 @@ namespace BLL.Services
         {
             return _userRepository.GetByPredicate(c => c.Name == login).ToBal();
         }
+
         public bool Contains(string login, string password)
         {
             var user = Contains(login);

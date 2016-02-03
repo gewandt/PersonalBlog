@@ -39,7 +39,7 @@ namespace DAL.Repository
 
         public void Update(TDal item)
         {
-            var itemToUpdate = _dbSet.Find(item.Id);
+            TEntity itemToUpdate = _dbSet.Find(item.Id);
             _mapper.CopyFields(item, itemToUpdate);
         }
 

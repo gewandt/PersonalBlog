@@ -40,10 +40,10 @@ namespace DAL.Mappers
         {
             if (dalFrom == null || entityTo == null)
                 return;
-            entityTo.Id = dalFrom.Id;
-            entityTo.Name = dalFrom.Name;
-            entityTo.Password = dalFrom.Password;
-            entityTo.RoleId = dalFrom.DalRole.Id;
+            entityTo.Id = (dalFrom.Id == 0) ? entityTo.Id : dalFrom.Id;
+            entityTo.Name = dalFrom.Name ?? entityTo.Name;
+            entityTo.Password = dalFrom.Password ?? entityTo.Password;
+            entityTo.RoleId = (dalFrom.DalRole.Id == 0) ? entityTo.RoleId : dalFrom.DalRole.Id;
         }
     }
 }

@@ -1,0 +1,24 @@
+﻿@model BLL.Interface.Entities.BllUserEntity
+@{
+    ViewBag.Title = "Edit user";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container centered w">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+        <div>
+            @Html.LabelFor(model => model.Name)
+            <p>@Html.EditorFor(model => model.Name)</p>
+        </div>
+        <div>
+            @Html.Label("Role")
+            <p>@Html.DropDownList("role", ViewBag.Roles as SelectList)</p>
+        </div>
+        <p>
+            <button type="submit" class="btn btn-primary">Save</button>
+            @Html.ActionLink("Cancel", "Control", "Management", null, new { @class = "btn btn-primary", @style = "background-color: #2f4f4f" })
+        </p>
+    }
+</div>

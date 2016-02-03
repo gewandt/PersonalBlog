@@ -6,18 +6,31 @@
 
 <h2>Control user panel</h2>
 <div class="container w" align="center">
+    <div class="container centered w">
+        @Html.ActionLink("+ New user", "Create", "Management", new { @class = "btn btn-lg", @style = "background-color: #0000ff" })
+    </div>
     <table>
         @foreach (var item in Model)
         {
+            if (HttpContext.Current.User.IsInRole(item.BllRole.Name) && item.Name == HttpContext.Current.User.Identity.Name)
+            {
+                continue;
+            }
             <tr>
                 <th>
                     <h2 class="centered">@Html.DisplayFor(modelItem => item.Name)</h2>
                 </th>
-                <th style="width: 20px"></th>
-                <th>
-                    @Html.ActionLink("Edit", "Edit", "Management", new { @item }, new { @class = "btn btn-lg", @style = "background-color: #32cd32" })
+                <th style="width: 30px">
                 </th>
-                <th style="width: 20px"></th>
+                <th>
+                    <h3 class="centered">@Html.DisplayFor(modelItem => item.BllRole.Name)</h3>
+                </th>
+                <th style="width: 30px">
+                </th>
+                <th>
+                    @Html.ActionLink("Edit", "Edit", "Management", new {@login = item.Name}, new {@class = "btn btn-lg", @style = "background-color: #32cd32"})
+                </th>
+                <th style="width: 30px"></th>
                 <th>
                     @Html.ActionLink("Delete", "Delete", "Management", new {@id = item.Id}, new {@class = "btn btn-lg", @style = "background-color: red"})
                 </th>

@@ -13,5 +13,6 @@ namespace BLL.Interface.Services
         bool ResetToDefault(int id);
         BllRoleEntity GetById(int id);
         BllRoleEntity GetByName(string name);
+        IEnumerable<BllRoleEntity> GetAll();
     }
 }
