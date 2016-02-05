@@ -61,6 +61,35 @@ namespace BLL.Mappers
             };
         }
 
+        public static DalBlogEntity ToDal(this BllBlogEntity itemBlogEntity)
+        {
+            if (itemBlogEntity == null)
+                return null;
+
+            return new DalBlogEntity
+            {
+                Id = itemBlogEntity.Id,
+                Name = itemBlogEntity.Name,
+                User = itemBlogEntity.User.ToDal()
+            };
+        }
+
+        public static DalArticleEntity ToDal(this BllArticleEntity itemArticleEntity)
+        {
+            if (itemArticleEntity == null)
+                return null;
+
+            return new DalArticleEntity
+            {
+                Id = itemArticleEntity.Id,
+                Name = itemArticleEntity.Name,
+                Blog = itemArticleEntity.Blog.ToDal(),
+                Date = itemArticleEntity.Date,
+            //TODO: update to work with tags
+                Text = itemArticleEntity.Text
+            };
+        }
+
         #endregion
 
         #region DAL to BAL
@@ -88,6 +117,34 @@ namespace BLL.Mappers
                 Name = user.Name,
                 Password = user.Password,
                 BllRole = user.DalRole.ToBal(),
+            };
+        }
+
+        public static BllBlogEntity ToBal(this DalBlogEntity itemBlogEntity)
+        {
+            if (itemBlogEntity == null)
+                return null;
+
+            return new BllBlogEntity
+            {
+                Id = itemBlogEntity.Id,
+                Name = itemBlogEntity.Name,
+                User = itemBlogEntity.User.ToBal()
+            };
+        }
+
+        public static BllArticleEntity ToBal(this DalArticleEntity itemArticleEntity)
+        {
+            if (itemArticleEntity == null)
+                return null;
+
+            return new BllArticleEntity
+            {
+                Id = itemArticleEntity.Id,
+                Blog = itemArticleEntity.Blog.ToBal(),
+                Date = itemArticleEntity.Date,
+                Name = itemArticleEntity.Name,
+                Text = itemArticleEntity.Text
             };
         }
 

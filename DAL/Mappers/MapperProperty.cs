@@ -39,6 +39,36 @@ namespace DAL.Mappers
             return roleEntity;
         }
 
+        public static Blog ToModel(this DalBlogEntity item)
+        {
+            if (item == null)
+                return null;
+
+            Blog blogEntity = new Blog
+            {
+                Id = item.Id,
+                Name = item.Name,
+                UserId = item.User.Id
+            };
+            return blogEntity;
+        }
+
+        public static Article ToModel(this DalArticleEntity item)
+        {
+            if (item == null)
+                return null;
+
+            Article articleEntity = new Article
+            {
+                Id = item.Id,
+                Name = item.Name,
+                BlogId = item.Blog.Id,
+                Text = item.Text,
+                Date = item.Date
+            };
+            return articleEntity;
+        }
+
         #endregion
 
         #region Model to DAL
@@ -69,6 +99,36 @@ namespace DAL.Mappers
                 Name = item.Name
             };
             return roleDalEntity;
+        }
+
+        public static DalBlogEntity ToDal(this Blog item)
+        {
+            if (item == null)
+                return null;
+
+            DalBlogEntity blogDalEntity = new DalBlogEntity
+            {
+                Id = item.Id,
+                Name = item.Name,
+                User = item.User.ToDal()
+            };
+            return blogDalEntity;
+        }
+
+        public static DalArticleEntity ToDal(this Article item)
+        {
+            if (item == null)
+                return null;
+
+            DalArticleEntity articleDalEntity = new DalArticleEntity
+            {
+                Id = item.Id,
+                Name = item.Name,
+                Blog = item.Blog.ToDal(),
+                Date = item.Date,
+                Text = item.Text
+            };
+            return articleDalEntity;
         }
 
         #endregion

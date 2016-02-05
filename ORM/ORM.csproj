@@ -51,60 +51,60 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Article.cs">
-      <DependentUpon>PBModel.tt</DependentUpon>
+      <DependentUpon>BlogDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Blog.cs">
-      <DependentUpon>PBModel.tt</DependentUpon>
+      <DependentUpon>BlogDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BlogDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BlogDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BlogDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BlogDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BlogDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BlogDBModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Comment.cs">
-      <DependentUpon>PBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PBModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PBModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PBModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PBModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PBModel.edmx</DependentUpon>
+      <DependentUpon>BlogDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs">
-      <DependentUpon>PBModel.tt</DependentUpon>
+      <DependentUpon>BlogDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Tag.cs">
-      <DependentUpon>PBModel.tt</DependentUpon>
+      <DependentUpon>BlogDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>PBModel.tt</DependentUpon>
+      <DependentUpon>BlogDBModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
-    <EntityDeploy Include="PBModel.edmx">
+    <EntityDeploy Include="BlogDBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PBModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>BlogDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="PBModel.Context.tt">
+    <None Include="BlogDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PBModel.edmx</DependentUpon>
-      <LastGenOutput>PBModel.Context.cs</LastGenOutput>
+      <DependentUpon>BlogDBModel.edmx</DependentUpon>
+      <LastGenOutput>BlogDBModel.Context.cs</LastGenOutput>
     </None>
-    <None Include="PBModel.edmx.diagram">
-      <DependentUpon>PBModel.edmx</DependentUpon>
+    <None Include="BlogDBModel.edmx.diagram">
+      <DependentUpon>BlogDBModel.edmx</DependentUpon>
     </None>
-    <None Include="PBModel.tt">
+    <None Include="BlogDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PBModel.edmx</DependentUpon>
-      <LastGenOutput>PBModel.cs</LastGenOutput>
+      <DependentUpon>BlogDBModel.edmx</DependentUpon>
+      <LastGenOutput>BlogDBModel.cs</LastGenOutput>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<BLL.Interface.Entities.BllArticleEntity>
+@{
+    ViewBag.Title = "Articles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <h2 style="padding-left: 10%">Articles in blog "@ViewBag.BlogName" :</h2>
+    <div class="text-">
+        @foreach (var c in Model)
+        {
+            @Html.HiddenFor(model => c)
+            <div style="padding-left: 10%; padding-right: 10%">
+                @Html.ActionLink(c.Name, "Articles", "Blog", new {@item = c}, new {@class = "text-primary"})
+                <div>
+                    <p><h5 style="color: #000000">@c.Text</h5>
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+}

@@ -37,7 +37,7 @@
                     <li>
                     <li>
                         <div class="btn btn-lg nopadding">
-                            @Html.ActionLink("BLOGS", "Register", "Account", null, new { @class = "btn btn-lg" })
+                            @Html.ActionLink("BLOGS", "Main", "Blog", null, new { @class = "btn btn-lg" })
                         </div>
                     </li>
                         @if (Request.IsAuthenticated)
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-        <div class="container centered w">
+        <div class="container w">
             @RenderBody()
         </div>
         <div id="f">

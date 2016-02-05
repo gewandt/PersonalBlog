@@ -31,6 +31,7 @@ namespace WebUI.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
+            //TODO: при удалении пользователя сделать удаление всех блогов и комментов
             _userService.Delete(id);
             return RedirectToAction("Control");
         }

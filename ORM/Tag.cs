@@ -14,17 +14,10 @@ namespace ORM
     
     public partial class Tag
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tag()
-        {
-            this.Articles = new HashSet<Article>();
-        }
-    
         public int Id { get; set; }
         public string Name { get; set; }
         public int ArticleId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Article> Articles { get; set; }
+        public virtual Article Article { get; set; }
     }
 }

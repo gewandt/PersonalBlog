@@ -18,18 +18,19 @@ namespace ORM
         public Article()
         {
             this.Comments = new HashSet<Comment>();
+            this.Tags = new HashSet<Tag>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public System.DateTime Date { get; set; }
         public string Text { get; set; }
-        public int TagId { get; set; }
+        public System.DateTime Date { get; set; }
         public int BlogId { get; set; }
     
         public virtual Blog Blog { get; set; }
-        public virtual Tag Tag { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

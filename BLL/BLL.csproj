@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Mappers\MapperProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ArticleService.cs" />
+    <Compile Include="Services\BlogService.cs" />
     <Compile Include="Services\RoleService.cs" />
     <Compile Include="Services\Service.cs" />
     <Compile Include="Services\TagService.cs" />

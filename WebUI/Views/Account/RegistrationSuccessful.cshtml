@@ -2,11 +2,12 @@
     ViewBag.Title = "RegisterSuccessful";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Register successful!</h2>
-<h3>
-    Welcome!
-</h3>
-<div class="btn btn-default nopadding">
-    @Html.ActionLink("Log In", "Login", "Account", null, new { @class = "btn btn-default", @style="color: #ffffff"})
+<div class="centered">
+    <h2>Register successful!</h2>
+    <h3>
+        Welcome!
+    </h3>
+    <div class="btn btn-default nopadding">
+        @Html.ActionLink("Log In", "Login", "Account", null, new { @class = "btn btn-default", @style = "color: #ffffff" })
+    </div>
 </div>

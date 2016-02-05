@@ -149,6 +149,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManagementController.cs" />
     <Compile Include="Global.asax.cs">
@@ -211,6 +212,8 @@
     <Content Include="Views\Management\Control.cshtml" />
     <Content Include="Views\Management\Edit.cshtml" />
     <Content Include="Views\Management\Create.cshtml" />
+    <Content Include="Views\Blog\Main.cshtml" />
+    <Content Include="Views\Blog\Articles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\" />

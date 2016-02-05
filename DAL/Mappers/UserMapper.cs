@@ -12,18 +12,14 @@ namespace DAL.Mappers
         {
             if (item == null)
                 return null;
-
-            User userEntity = item.ToModel();
-            return userEntity;
+            return item.ToModel();
         }
 
         public DalUserEntity ToDal(User entity)
         {
             if (entity == null)
                 return null;
-
-            DalUserEntity userEntity = entity.ToDal();
-            return userEntity;
+            return entity.ToDal();
         }
 
         public User ToDal(DalUserEntity entity)

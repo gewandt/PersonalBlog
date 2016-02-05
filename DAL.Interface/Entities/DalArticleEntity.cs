@@ -8,7 +8,6 @@ namespace DAL.Interface.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public string Text { get; set; }
-        public DalTagEntity Tag { get; set; }
         public DalBlogEntity Blog { get; set; }
         public DateTime Date { get; set; }
     }
