@@ -27,9 +27,33 @@ namespace BLL.Services
 
         #endregion
 
+        public void Create(BllBlogEntity user)
+        {
+            _blogRepository.Create(user.ToDal());
+            _unitOfWork.Commit();
+        }
+
+        public bool Update(BllBlogEntity item)
+        {
+            var blog = _blogRepository.GetById(item.Id);
+            if (blog == null)
+                return false;
+            _blogRepository.Update(item.ToDal());
+            _unitOfWork.Commit();
+            return true;
+        }
+
         public BllBlogEntity GetById(int id)
         {
             return _blogRepository.GetById(id).ToBal();
+        }
+
+        public IEnumerable<BllBlogEntity> GetByName(string name)
+        {
+            var list = _blogRepository.GetAll();
+            return from c in list 
+                   where c.User.Name == name
+                   select c.ToBal();
         }
 
         public IEnumerable<BllBlogEntity> GetAll()

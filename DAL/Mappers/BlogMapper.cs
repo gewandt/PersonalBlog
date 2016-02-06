@@ -30,9 +30,13 @@ namespace DAL.Mappers
             throw new NotImplementedException();
         }
 
-        public void CopyFields(DalBlogEntity dalEntity, Blog entity)
+        public void CopyFields(DalBlogEntity dalFrom, Blog entityTo)
         {
-            throw new NotImplementedException();
+            if (dalFrom == null || entityTo == null)
+                return;
+            entityTo.Id = (dalFrom.Id == 0) ? entityTo.Id : dalFrom.Id;
+            entityTo.Name = dalFrom.Name ?? entityTo.Name;
+            entityTo.UserId = (dalFrom.User.Id == 0) ?  entityTo.UserId : dalFrom.User.Id;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using WebUI.Infrastructure.Provider
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,73 +22,84 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    @if(ViewContext.HttpContext.User.IsInRole("Admin"))
+                    <li>
+                        <div class="btn btn-lg nopadding">
+                            @Html.ActionLink("HOME", "Home", "Home", null, new { @class = "btn btn-lg" })
+                        </div>
+                    </li>
+                    @if (Request.IsAuthenticated)
                     {
                         <li>
                             <div class="btn btn-lg nopadding">
-                                @Html.ActionLink("CONTROL PANEL", "Control", "Management", null, new { @class = "btn btn-lg" })
+                                @Html.ActionLink("MY BLOGS", "Blog", "Blog", new
+                           {
+                               @user = HttpContext.Current.User.Identity.Name
+                           },
+                                    new { @class = "btn btn-lg" })
+                            </div>
+                        </li>
+                    }
+                    @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+                    {
+                        <li>
+                            <div class="btn btn-lg nopadding">
+                                @Html.ActionLink("CONTROL PANEL", "Control", "Management", null, new {@class = "btn btn-lg"})
                             </div>
                         </li>
                     }
                     <li>
                         <div class="btn btn-lg nopadding">
-                            @Html.ActionLink("HOME", "Home", "Home", null , new {@class = "btn btn-lg"})
-                        </div>
-                    </li>
-                    <li>
-                    <li>
-                        <div class="btn btn-lg nopadding">
                             @Html.ActionLink("BLOGS", "Main", "Blog", null, new { @class = "btn btn-lg" })
                         </div>
                     </li>
-                        @if (Request.IsAuthenticated)
-                        {
-                            <li>
-                                <div class="btn btn-lg nopadding">
-                                    @Html.ActionLink("LOG OUT", "Logoff", "Account", null, new {@class = "btn btn-lg"})
-                                </div>
-                            </li>
-                            <li>
-                                <div class="btn btn-lg" style="color: #ffffff; background-color: #2f4f4f">
-                                    @{
-                                        var username = HttpContext.Current.User.Identity.Name;
-                                    }
-                                    @username
-                                </div>
-                                
-                            </li>
-                        }
-                        else
-                        {
-                            <li>
-                                <div class="btn btn-lg nopadding">
-                                    @Html.ActionLink("LOG IN", "Login", "Account", null, new { @class = "btn btn-lg" })
-                                </div>
-                            </li>
-                            <li>
-                                <div class="btn btn-lg nopadding">
-                                    @Html.ActionLink("SIGN IN", "Register", "Account", null, new { @class = "btn btn-lg" })
-                                </div>
-                            </li>
-                        }
-                    </ul>
-                </div>
+                    @if (Request.IsAuthenticated)
+                    {
+                    <li>
+                        <div class="btn btn-lg nopadding">
+                            @Html.ActionLink("LOG OUT", "Logoff", "Account", null, new { @class = "btn btn-lg" })
+                        </div>
+                    </li>
+                    <li>
+                        <div class="btn btn-lg" style="color: #ffffff; background-color: #2f4f4f">
+                            @{
+                                var username = HttpContext.Current.User.Identity.Name;
+                            }
+                            @username
+                        </div>
+
+                    </li>
+                    }
+                    else
+                    {
+                    <li>
+                        <div class="btn btn-lg nopadding">
+                            @Html.ActionLink("LOG IN", "Login", "Account", null, new { @class = "btn btn-lg" })
+                        </div>
+                    </li>
+                    <li>
+                        <div class="btn btn-lg nopadding">
+                            @Html.ActionLink("SIGN IN", "Register", "Account", null, new { @class = "btn btn-lg" })
+                        </div>
+                    </li>
+                    }
+                </ul>
             </div>
         </div>
-        <div class="container w">
-            @RenderBody()
-        </div>
-        <div id="f">
-            <div class="container">
-                <div class="row centered">
-                    <a href="#"><i class="fa fa-vk"></i></a>
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-apple"></i></a>
-                    <p>&copy;&nbsp;@DateTime.Now.Year&nbsp;Bugblog - All rights reserved.</p>
-                </div>
+    </div>
+    <div class="container w">
+        @RenderBody()
+    </div>
+    <div id="f">
+        <div class="container">
+            <div class="row centered">
+                <a href="#"><i class="fa fa-vk"></i></a>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-apple"></i></a>
+                <p>&copy;&nbsp;@DateTime.Now.Year&nbsp;Bugblog - All rights reserved.</p>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="~/Scripts/bootstrap.min.js"></script>
-    </body>
+    </div>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
 </html>

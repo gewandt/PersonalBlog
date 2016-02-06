@@ -12,12 +12,14 @@
         {
             @Html.HiddenFor(model => c)
             <div style="padding-left: 10%; padding-right: 10%">
-                @Html.ActionLink(c.Name, "Articles", "Blog", new {@item = c}, new {@class = "text-primary"})
+                @Html.ActionLink(c.Name, "Articles", "Article", new { @item = c }, new { @class = "text-primary" })
                 <div>
-                    <p><h5 style="color: #000000">@c.Text</h5>
+                    <p>
+                        <h5 style="color: #000000">@c.Text</h5>
                     </p>
                 </div>
             </div>
         }
     </div>
 }
+

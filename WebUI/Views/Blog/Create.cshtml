@@ -1,0 +1,25 @@
+﻿@model BLL.Interface.Entities.BllBlogEntity
+
+@{
+    ViewBag.Title = "Create blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="centered">
+    @using (Html.BeginForm())
+    {
+        var user = Model.User.Name;
+        @Html.AntiForgeryToken()
+        <h4 class="text-danger">@Html.ValidationSummary()</h4>
+        <div class="form-group" align="center">
+            <label>Name of blog</label>
+            @Html.TextBoxFor(itemBlog => itemBlog.Name, new { @class = "form-control" })
+            <p>
+                <button type="submit" class="btn btn-primary">Accept</button>
+                <button type="reset" class="btn btn-primary">Reset</button>
+            </p>
+
+        </div>
+    }
+</div>

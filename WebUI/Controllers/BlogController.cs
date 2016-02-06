@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
 
@@ -12,31 +8,71 @@ namespace WebUI.Controllers
     public class BlogController : Controller
     {
         private readonly IBlogService _blogService;
-        private readonly IArticleService _articleService;
+        private readonly IUserService _userService;
 
-        public BlogController(IBlogService blogService, IArticleService articleService)
+        public BlogController(IBlogService blogService, IUserService userService)
         {
             _blogService = blogService;
-            _articleService = articleService;
+            _userService = userService;
         }
         [HttpGet]
         public ActionResult Main()
         {
-            var blogs = _blogService.GetAll();
-            return View(blogs);
+            var user = TempData["user"];
+            if (user != null)
+            {
+                var blogs = _blogService.GetByName(user.ToString());
+                return View(blogs);
+            }
+            if (HttpContext.User.IsInRole("Admin"))
+            {
+                TempData["user"] = HttpContext.User.Identity.Name;
+            }
+            return View(_blogService.GetAll());
+        }
+        public ActionResult Blog(string user)
+        {
+            TempData["user"] = user;
+            return RedirectToAction("Main", "Blog");
+        }
+        [HttpGet]
+        public ActionResult Create(string user)
+        {
+            BllBlogEntity blog = new BllBlogEntity { User = new BllUserEntity { Name = user } };
+            return PartialView("Create", blog);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(BllBlogEntity itemBlog)
+        {
+            if (itemBlog != null && itemBlog.Name.Length > 2)
+            {
+                var username = Request["user"];
+                itemBlog.User = _userService.Contains(username);
+                _blogService.Create(itemBlog);
+            }
+            return RedirectToAction("Main");
         }
 
         [HttpGet]
-        public ActionResult Articles(int id)
+        public ActionResult Edit(int id)
         {
-            var articles = _articleService.GetAllByBlog(id);
-            if (articles != null)
+            var itemBlog = _blogService.GetById(id);
+            return PartialView("Edit", itemBlog);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(BllBlogEntity itemBlog)
+        {
+            if (itemBlog != null)
             {
-                var blogName = _blogService.GetById(id).Name;
-                ViewBag.BlogName = blogName ?? string.Empty;
-                return View("Articles", articles);
+                var updBlog = _blogService.GetById(itemBlog.Id);
+                updBlog.Name = itemBlog.Name;
+                _blogService.Update(updBlog);
             }
-            return View("Main");
+            return RedirectToAction("Main");
         }
     }
 }

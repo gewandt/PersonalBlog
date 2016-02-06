@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
-using WebUI.Models;
 
 namespace WebUI.Controllers
 {
@@ -75,7 +71,8 @@ namespace WebUI.Controllers
         {
             //too work with 1,2,3 numbering on DB
             itemUser.BllRole = _roleService.GetById(role);
-            _userService.Create(itemUser.Name, itemUser.Password, itemUser.BllRole);
+            if (_userService.Contains(itemUser.Name) == null)
+                _userService.Create(itemUser.Name, itemUser.Password, itemUser.BllRole);
             return RedirectToAction("Control");
         }
     }

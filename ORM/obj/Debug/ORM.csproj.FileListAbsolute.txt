@@ -8,3 +8,4 @@ D:\Projects Visual Studio\PersonalBlog\ORM\bin\Debug\EntityFramework.SqlServer.x
 D:\Projects Visual Studio\PersonalBlog\ORM\bin\Debug\ru\EntityFramework.resources.dll
 D:\Projects Visual Studio\PersonalBlog\ORM\obj\Debug\ORM.dll
 D:\Projects Visual Studio\PersonalBlog\ORM\obj\Debug\ORM.pdb
+D:\Projects Visual Studio\PersonalBlog\ORM\obj\Debug\ORM.csprojResolveAssemblyReference.cache

@@ -9,11 +9,11 @@ namespace BLL.Interface.Services
 {
     public interface IBlogService : IDisposable
     {
-        //void Create(string name, BllUserEntity user);
-        //bool Update(int id);
+        void Create(BllBlogEntity item);
+        bool Update(BllBlogEntity item);
         //bool Delete(int id);
         BllBlogEntity GetById(int id);
-        //BllBlogEntity GetByName(string name);
+        IEnumerable<BllBlogEntity> GetByName(string name);
         IEnumerable<BllBlogEntity> GetAll();
     }
 }
