@@ -9,7 +9,7 @@ namespace BLL.Interface.Services
 {
     public interface IArticleService : IDisposable
     {
-        //void Create(string name, BllUserEntity user);
+        void Create(BllArticleEntity item);
         //bool Update(int id);
         //bool Delete(int id);
         //BllBlogEntity GetById(int id);

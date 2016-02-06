@@ -21,7 +21,7 @@ namespace WebUI.Controllers
             var user = TempData["user"];
             if (user != null)
             {
-                var blogs = _blogService.GetByName(user.ToString());
+                var blogs = _blogService.GetByUserName(user.ToString());
                 return View(blogs);
             }
             if (HttpContext.User.IsInRole("Admin"))
@@ -72,6 +72,13 @@ namespace WebUI.Controllers
                 updBlog.Name = itemBlog.Name;
                 _blogService.Update(updBlog);
             }
+            return RedirectToAction("Main");
+        }
+
+        public ActionResult Delete(int id)
+        {
+            if (_blogService.GetById(id) != null)
+                _blogService.Delete(id);
             return RedirectToAction("Main");
         }
     }

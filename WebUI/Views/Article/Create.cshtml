@@ -1,0 +1,27 @@
+﻿@model BLL.Interface.Entities.BllArticleEntity
+
+@{
+    ViewBag.Title = "Create article";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="centered">
+    @using (Html.BeginForm())
+    {
+        var time = Model.Date;
+        @Html.AntiForgeryToken()
+        <h3>Add article to blog at @time</h3>
+        <h4 class="text-danger">@Html.ValidationSummary()</h4>
+        <div class="form-group" align="center">
+            @Html.HiddenFor(itemArticle => itemArticle.Date)
+            <label>Name of article</label>
+            <p>@Html.TextBoxFor(itemArticle => itemArticle.Name, new { @class = "form-control" })</p>
+            <label>Text of article</label>
+            <p>@Html.TextBoxFor(itemArticle => itemArticle.Text, new { @class = "text-center" })</p>
+            <p>
+                <button type="submit" class="btn btn-primary">Accept</button>
+                <button type="reset" class="btn btn-primary">Reset</button>
+            </p>
+        </div>
+    }
+</div>

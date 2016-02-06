@@ -11,9 +11,10 @@ namespace BLL.Interface.Services
     {
         void Create(BllBlogEntity item);
         bool Update(BllBlogEntity item);
-        //bool Delete(int id);
+        bool Delete(int id);
+        BllBlogEntity GetByNameAndUser(string user, string blog);
         BllBlogEntity GetById(int id);
-        IEnumerable<BllBlogEntity> GetByName(string name);
+        IEnumerable<BllBlogEntity> GetByUserName(string name);
         IEnumerable<BllBlogEntity> GetAll();
     }
 }

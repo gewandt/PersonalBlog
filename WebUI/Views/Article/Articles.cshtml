@@ -7,6 +7,12 @@
 @using (Html.BeginForm())
 {
     <h2 style="padding-left: 10%">Articles in blog "@ViewBag.BlogName" :</h2>
+    <div class="centered">
+        @if (ViewBag.UserName != null)
+        {
+            @Html.ActionLink("+ Add article", "Create", "Article", new { @username = ViewBag.UserName, @blog = ViewBag.BlogName}, new { @class = "btn btn-default", @style = "background-color: #00ff00; color: #ffffff" })
+        }
+    </div>
     <div class="text-">
         @foreach (var c in Model)
         {

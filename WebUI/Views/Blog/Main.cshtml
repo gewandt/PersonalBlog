@@ -18,7 +18,7 @@
         @foreach (var c in Model)
         {
             <div style="padding-left: 35%">
-                @Html.ActionLink(c.Name, "Articles", "Article", new { @id = c.Id }, new { @class = "text-primary" })
+                @Html.ActionLink(c.Name, "Articles", "Article", new { @id = c.Id, @user = currentUser }, new { @class = "text-primary" })
                 <div>
                     <h5 style="color: #000000">
                         @Html.Label("Author:")&nbsp;
@@ -29,7 +29,7 @@
                 {
                     <div>
                         @Html.ActionLink("Edit", "Edit", "Blog", new { @id = c.Id }, new { @class = "fa fa-edit", @style = "color: #000080" })
-                        @Html.ActionLink("Delete", "Articles", "Blog", new { @id = c.Id }, new { @class = "fa fa-ban", @style = "color: #ff0000" })
+                        @Html.ActionLink("Delete", "Delete", "Blog", new { @id = c.Id }, new { @class = "fa fa-ban", @style = "color: #ff0000" })
                     </div>
                 }
             </div>

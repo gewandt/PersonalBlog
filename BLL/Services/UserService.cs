@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using BLL.Helpers;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
 using BLL.Mappers;
@@ -14,7 +15,8 @@ namespace BLL.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<DalUserEntity> _userRepository;
-        private readonly IRepository<DalRoleEntity> _roleRepository;
+        private readonly IRepository<DalBlogEntity> _blogRepository;
+        private readonly IRepository<DalArticleEntity> _articleRepository;
 
         #region Ctor
 
@@ -23,7 +25,8 @@ namespace BLL.Services
             if (unitOfWork == null) throw new ArgumentNullException("unitOfWork");
             _unitOfWork = unitOfWork;
             _userRepository = _unitOfWork.GetRepository<DalUserEntity>();
-            _roleRepository = _unitOfWork.GetRepository<DalRoleEntity>();
+            _blogRepository = _unitOfWork.GetRepository<DalBlogEntity>();
+            _articleRepository = _unitOfWork.GetRepository<DalArticleEntity>();
         }
 
         #endregion
@@ -58,6 +61,7 @@ namespace BLL.Services
             var user = _userRepository.GetById(id);
             if (user == null)
                 return;
+            Helper.DeleteBlogs(_blogRepository, _articleRepository, id);
             _userRepository.Delete(user);
             _unitOfWork.Commit();
         }

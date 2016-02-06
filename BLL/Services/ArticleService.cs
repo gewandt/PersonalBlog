@@ -27,6 +27,12 @@ namespace BLL.Services
 
         #endregion
 
+        public void Create(BllArticleEntity item)
+        {
+            _articleRepository.Create(item.ToDal());
+            _unitOfWork.Commit();
+        }
+
         public IEnumerable<BllArticleEntity> GetAllByBlog(int id)
         {
             return _articleRepository.GetAll().Select(c => c.ToBal()).Where(c => c.Blog.Id == id);

@@ -214,10 +214,10 @@
     <Content Include="Views\Management\Edit.cshtml" />
     <Content Include="Views\Management\Create.cshtml" />
     <Content Include="Views\Blog\Main.cshtml" />
-    <Content Include="Views\Blog\Articles.cshtml" />
     <Content Include="Views\Blog\Create.cshtml" />
     <Content Include="Views\Blog\Edit.cshtml" />
     <Content Include="Views\Article\Articles.cshtml" />
+    <Content Include="Views\Article\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\" />
