@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using BLL.Interface.Entities;
@@ -25,68 +27,137 @@ namespace WebUI.Controllers
         public ActionResult Articles(int id, string user)
         {
             var articles = _articleService.GetAllByBlog(id);
-            //TODO: work with model + tags
             if (articles != null)
             {
+                var articlesModel = GetListOfArticles(articles);
                 var blogName = _blogService.GetById(id).Name;
                 ViewBag.BlogName = blogName ?? string.Empty;
                 ViewBag.UserName = user;
-                return View("Articles", articles);
+                return View("Articles", articlesModel);
             }
             return RedirectToAction("Main", "Blog");
         }
+
+        private IEnumerable<ArticleModel> GetListOfArticles(IEnumerable<BllArticleEntity> articles)
+        {
+            return articles.Select(item => new ArticleModel
+            {
+                Id = item.Id,
+                Name = item.Name,
+                Text = item.Text,
+                Tags = _tagService.GetAllForArticle(item.Id).ToList(),
+                Author = item.Blog.User.Name,
+                Date = item.Date
+            }).ToList();
+        }
+
         [HttpGet]
         public ActionResult Create(string blog, string username)
         {
             var item = _blogService.GetByNameAndUser(username, blog);
             if (item != null)
             {
-                BllArticleEntity article = new BllArticleEntity{Date = DateTime.Now};
-                TempData["blogname"] = blog;
-                TempData["username"] = username;
-                return PartialView("Create", article);
+                ArticleModel model = new ArticleModel
+                {
+                    BlogName = blog,
+                    Author = username,
+                    Date = DateTime.Now
+                };
+                return PartialView("Create", model);
             }
             return View("Error");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BllArticleEntity itemArticle)
+        public ActionResult Create(ArticleModel itemArticle)
         {
             if (itemArticle != null)
             {
-                var blogname = TempData["blogname"].ToString();
-                var username = Request["username"];
+                if (!ModelState.IsValid) return PartialView("Create", itemArticle);
+                var blogname = itemArticle.BlogName;
+                var username = itemArticle.Author;
                 var itemBlog = _blogService.GetByNameAndUser(username, blogname);
                 var item = new BllArticleEntity
                 {
                     Name = itemArticle.Name,
                     Text = itemArticle.Text,
-                    Date = DateTime.UtcNow,
+                    Date = itemArticle.Date,
                     Blog = itemBlog
                 };
                 _articleService.Create(item);
+                var article = _articleService.GetAll()
+                    .Where(art => art.Blog != null)
+                    .Where(art => art.Blog.User.Name == item.Blog.User.Name)
+                    .FirstOrDefault(art => art.Name == item.Name);
+                if (itemArticle.CurrentTag != null)
+                {
+                    var listTags = GetListOfTags(itemArticle, article);
+                    _tagService.Create(listTags);
+                }
                 return RedirectToAction("Main", "Blog");
             }
             return RedirectToAction("Articles");
         }
+
+        private List<BllTagEntity> GetListOfTags(ArticleModel itemArticle, BllArticleEntity item)
+        {
+            string[] substrings = Regex.Split(itemArticle.CurrentTag, ";");
+            return (from match in substrings
+                where match != string.Empty
+                select new BllTagEntity
+                {
+                    Name = match, 
+                    Article = item
+                }).ToList();
+        }
+
         [HttpGet]
         public ActionResult Edit(int id)
         {
             var itemArticle = _articleService.GetById(id);
-            return PartialView("Edit", itemArticle);
+            if (itemArticle != null)
+            {
+                var tags = GetStringOfTags(itemArticle);
+                ArticleModel model = new ArticleModel
+                {
+                    Name = itemArticle.Name,
+                    Text = itemArticle.Text,
+                    CurrentTag = tags.ToString(),
+                    Author = itemArticle.Blog.User.Name
+                };
+                return PartialView("Edit", model);
+            }
+            return View("Error");
+        }
+
+        private StringBuilder GetStringOfTags(BllArticleEntity itemArticle)
+        {
+            var tags = _tagService.GetAllForArticle(itemArticle.Id);
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in tags)
+            {
+                sb.AppendFormat("{0};", item.Name);
+            }
+            return sb;
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(BllArticleEntity itemArticle)
+        public ActionResult Edit(ArticleModel itemArticle)
         {
             if (itemArticle != null)
             {
+                if (!ModelState.IsValid) return PartialView("Edit", itemArticle);
                 var updArticle = _articleService.GetById(itemArticle.Id);
                 updArticle.Name = itemArticle.Name;
                 updArticle.Text = itemArticle.Text;
                 _articleService.Update(updArticle);
+                if (itemArticle.CurrentTag != null)
+                {
+                    var listTags = GetListOfTags(itemArticle, updArticle);
+                    _tagService.Update(listTags, itemArticle.Id);
+                }
             }
             return RedirectToAction("Main", "Blog");
         }

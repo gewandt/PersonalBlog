@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BLL.Interface.Entities.BllArticleEntity>
+﻿@model IEnumerable<WebUI.Models.ArticleModel>
 @{
     ViewBag.Title = "Articles";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -30,10 +30,21 @@
                 }
                 <div>
                     <p>
-                        Author: @c.Blog.User.Name
+                        Author: @c.Author
                     </p>
                     <p>
                         Date adding: @c.Date
+                    </p>
+                    <p>
+                        Tags:
+                        @{
+                            foreach (var result in c.Tags.Select(m => m.Name))
+                            {
+                                <div class="btn btn-group-xs" style="background-color: #008b8b; color: #d3d3d3">
+                                    @result
+                                </div>
+                            }
+                        }
                     </p>
                 </div>
 

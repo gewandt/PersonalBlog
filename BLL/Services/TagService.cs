@@ -21,13 +21,15 @@ namespace BLL.Services
             _unitOfWork = unitOfWork;
             _tagRepository = _unitOfWork.GetRepository<DalTagEntity>();
         }
-        public bool Create(string name, BllArticleEntity article)
+        public bool Create(IEnumerable<BllTagEntity> listTags)
         {
-            Create(new BllTagEntity
+            if (listTags == null)
+                return false;
+            foreach (var tag in listTags)
             {
-                Name = name,
-                Article = article
-            });
+                _tagRepository.Create(tag.ToDal());
+            }
+            _unitOfWork.Commit();
             return true;
         }
 
@@ -39,15 +41,36 @@ namespace BLL.Services
                 .Select(c => c.ToBal());
         }
 
-        private void Create(BllTagEntity tag)
+        public bool Update(IEnumerable<BllTagEntity> listTags, int articleId)
         {
-            _tagRepository.Create(tag.ToDal());
+            if (listTags == null)
+                return false;
+            var tags = GetAll()
+                .Where(item => item.Article != null)
+                .Where(item => item.Article.Id == articleId);
+            foreach (var item in tags)
+            {
+                _tagRepository.Delete(item.ToDal());
+            }
+            List<BllTagEntity> listUpd = listTags.ToList();
+            Create(listUpd);
             _unitOfWork.Commit();
+            return true;
+        }
+
+        public IEnumerable<BllTagEntity> GetAll()
+        {
+            return _tagRepository.GetAll().Select(c => c.ToBal());
         }
 
         public bool Delete(BllTagEntity item)
         {
-            throw new NotImplementedException();
+            var tag = _tagRepository.GetById(item.Id);
+            if (tag == null)
+                return false;
+            _tagRepository.Delete(tag);
+            _unitOfWork.Commit();
+            return true;
         }
 
         public BllTagEntity GetById(int id)

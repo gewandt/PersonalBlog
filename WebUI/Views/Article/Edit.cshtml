@@ -1,4 +1,4 @@
-﻿@model BLL.Interface.Entities.BllArticleEntity
+﻿@model WebUI.Models.ArticleModel
 @{
     ViewBag.Title = "Edit article";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,9 +16,13 @@
             @Html.LabelFor(model => model.Text)
             <p>@Html.EditorFor(model => model.Text, new { @value = Model.Text })</p>
         </div>
+        <div>
+            <label>Tags from ;</label>
+            <p>@Html.EditorFor(model => model.CurrentTag, new { @value = Model.CurrentTag })</p>
+        </div>
         <p>
             <button type="submit" class="btn btn-primary">Save</button>
-            @Html.ActionLink("Cancel", "Articles", "Article", new {@id = Model.Id, @user = Model.Blog.User.Name}, new { @class = "btn btn-primary", @style = "background-color: #2f4f4f" })
+            @Html.ActionLink("Cancel", "Articles", "Article", new { @class = "btn btn-primary", @style = "background-color: #2f4f4f" })
         </p>
     }
 </div>

@@ -158,8 +158,8 @@
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Infrastructure\Provider\BlogRoleProvider.cs" />
-    <Compile Include="Models\CommonArticleModel.cs" />
-    <Compile Include="Models\CreateUserModel.cs" />
+    <Compile Include="Models\ArticleModel.cs" />
+    <Compile Include="Models\CreateArticleModel.cs" />
     <Compile Include="Models\RegisterUserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

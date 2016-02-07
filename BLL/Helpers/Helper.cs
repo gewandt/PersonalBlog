@@ -14,16 +14,17 @@ namespace BLL.Helpers
     {
         #region Clean articles in deleting blog
 
-        public static void DeleteArticles(IRepository<DalArticleEntity> repository, int id)
+        public static void DeleteArticles(IRepository<DalArticleEntity> artRepository, IRepository<DalTagEntity> tagRepository, int id)
         {
-            var articles = repository.GetAll()
+            var articles = artRepository.GetAll()
                 .Where(c => c.Blog != null)
                 .Where(c => c.Blog.Id == id)
                 .Select(c => c)
                 .ToList();
             foreach (var item in articles)
             {
-                repository.Delete(item);
+                DeleteTags(tagRepository, item.Id);
+                artRepository.Delete(item);
             }
         }
 
@@ -32,7 +33,7 @@ namespace BLL.Helpers
 
         #region Clean blogs with articles in deleting user
 
-        public static void DeleteBlogs(IRepository<DalBlogEntity> blogRepository, IRepository<DalArticleEntity> articleRepository, int id)
+        public static void DeleteBlogs(IRepository<DalBlogEntity> blogRepository, IRepository<DalArticleEntity> articleRepository, IRepository<DalTagEntity> tagRepository, int id)
         {
             var blogs = blogRepository.GetAll()
                 .Where(c => c.User != null)
@@ -41,8 +42,25 @@ namespace BLL.Helpers
                 .ToList();
             foreach (var item in blogs)
             {
-                DeleteArticles(articleRepository, item.Id);
+                DeleteArticles(articleRepository, tagRepository, item.Id);
                 blogRepository.Delete(item);
+            }
+        }
+
+        #endregion
+
+        #region Clean tags with deleting article
+
+        public static void DeleteTags(IRepository<DalTagEntity> repository, int idArticle)
+        {
+            var tags = repository.GetAll()
+                .Where(c => c.Article != null)
+                .Where(c => c.Article.Id == idArticle)
+                .Select(c => c)
+                .ToList();
+            foreach (var item in tags)
+            {
+                repository.Delete(item);
             }
         }
 

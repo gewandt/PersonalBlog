@@ -17,6 +17,7 @@ namespace BLL.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<DalBlogEntity> _blogRepository;
         private readonly IRepository<DalArticleEntity> _articleRepository;
+        private readonly IRepository<DalTagEntity> _tagRepository;
 
         #region Ctor
 
@@ -26,6 +27,7 @@ namespace BLL.Services
             _unitOfWork = unitOfWork;
             _blogRepository = _unitOfWork.GetRepository<DalBlogEntity>();
             _articleRepository = _unitOfWork.GetRepository<DalArticleEntity>();
+            _tagRepository = _unitOfWork.GetRepository<DalTagEntity>();
         }
 
         #endregion
@@ -51,7 +53,7 @@ namespace BLL.Services
             var blog = _blogRepository.GetById(id);
             if (blog == null)
                 return false;
-            Helper.DeleteArticles(_articleRepository, id);
+            Helper.DeleteArticles(_articleRepository, _tagRepository, id);
             _blogRepository.Delete(blog);
             _unitOfWork.Commit();
             return true;

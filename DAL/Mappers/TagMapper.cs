@@ -43,4 +43,5 @@ namespace DAL.Mappers
             entityTo.Name = dalFrom.Name ?? entityTo.Name;
             entityTo.ArticleId = (dalFrom.Article.Id == 0) ? entityTo.ArticleId : dalFrom.Article.Id;
         }
+    }
 }

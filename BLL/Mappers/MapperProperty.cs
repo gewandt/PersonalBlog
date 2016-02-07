@@ -85,7 +85,6 @@ namespace BLL.Mappers
                 Name = itemArticleEntity.Name,
                 Blog = itemArticleEntity.Blog.ToDal(),
                 Date = itemArticleEntity.Date,
-            //TODO: update to work with tags
                 Text = itemArticleEntity.Text
             };
         }

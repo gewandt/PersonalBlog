@@ -9,9 +9,9 @@ namespace BLL.Interface.Services
 {
     public interface ITagService
     {
-        bool Create(string name, BllArticleEntity article);
+        bool Create(IEnumerable<BllTagEntity> listTags);
         IEnumerable<BllTagEntity> GetAllForArticle(int id);
-        //bool Delete(BllTagEntity item);
-        //BllTagEntity GetById(int id);
+        bool Update(IEnumerable<BllTagEntity> listTags, int articleId);
+        IEnumerable<BllTagEntity> GetAll();
     }
 }

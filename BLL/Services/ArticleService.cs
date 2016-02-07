@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLL.Helpers;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
 using BLL.Mappers;
@@ -15,6 +16,7 @@ namespace BLL.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<DalArticleEntity> _articleRepository;
+        private readonly IRepository<DalTagEntity> _tagRepository;
 
         #region Ctor
 
@@ -23,6 +25,7 @@ namespace BLL.Services
             if (unitOfWork == null) throw new ArgumentNullException("unitOfWork");
             _unitOfWork = unitOfWork;
             _articleRepository = _unitOfWork.GetRepository<DalArticleEntity>();
+            _tagRepository = _unitOfWork.GetRepository<DalTagEntity>();
         }
 
         #endregion
@@ -48,6 +51,7 @@ namespace BLL.Services
             var article = _articleRepository.GetById(id);
             if (article == null)
                 return false;
+            Helper.DeleteTags(_tagRepository, id);
             _articleRepository.Delete(article);
             _unitOfWork.Commit();
             return true;
