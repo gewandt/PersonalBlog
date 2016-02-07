@@ -218,6 +218,7 @@
     <Content Include="Views\Blog\Edit.cshtml" />
     <Content Include="Views\Article\Articles.cshtml" />
     <Content Include="Views\Article\Create.cshtml" />
+    <Content Include="Views\Article\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\" />

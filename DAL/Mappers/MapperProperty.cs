@@ -60,7 +60,7 @@ namespace DAL.Mappers
 
             Article articleEntity = new Article
             {
-                Id = item.Id,
+                //Id = item.Id,
                 Name = item.Name,
                 BlogId = item.Blog.Id,
                 Text = item.Text,

@@ -33,6 +33,31 @@ namespace BLL.Services
             _unitOfWork.Commit();
         }
 
+        public bool Update(BllArticleEntity item)
+        {
+            var article = _articleRepository.GetById(item.Id);
+            if (article == null)
+                return false;
+            _articleRepository.Update(item.ToDal());
+            _unitOfWork.Commit();
+            return true;
+        }
+
+        public bool Delete(int id)
+        {
+            var article = _articleRepository.GetById(id);
+            if (article == null)
+                return false;
+            _articleRepository.Delete(article);
+            _unitOfWork.Commit();
+            return true;
+        }
+
+        public BllArticleEntity GetById(int id)
+        {
+            return _articleRepository.GetById(id).ToBal();
+        }
+
         public IEnumerable<BllArticleEntity> GetAllByBlog(int id)
         {
             return _articleRepository.GetAll().Select(c => c.ToBal()).Where(c => c.Blog.Id == id);

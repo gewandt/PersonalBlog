@@ -10,7 +10,7 @@
     <div class="centered">
         @if (ViewBag.UserName != null)
         {
-            @Html.ActionLink("+ Add article", "Create", "Article", new { @username = ViewBag.UserName, @blog = ViewBag.BlogName}, new { @class = "btn btn-default", @style = "background-color: #00ff00; color: #ffffff" })
+            @Html.ActionLink("+ Add article", "Create", "Article", new { @username = ViewBag.UserName, @blog = ViewBag.BlogName }, new { @class = "btn btn-default", @style = "background-color: #00ff00; color: #ffffff" })
         }
     </div>
     <div class="text-">
@@ -18,12 +18,35 @@
         {
             @Html.HiddenFor(model => c)
             <div style="padding-left: 10%; padding-right: 10%">
-                @Html.ActionLink(c.Name, "Articles", "Article", new { @item = c }, new { @class = "text-primary" })
+                @if (ViewBag.UserName == null)
+                {
+                    <div>
+                        <label>@c.Name</label>
+                    </div>
+                }
+                else
+                {
+                    @Html.ActionLink(c.Name, "Articles", "Article", new { @item = c }, new { @class = "text-primary" })
+                }
+                <div>
+                    <p>
+                        Author: @c.Blog.User.Name
+                    </p>
+                    <p>
+                        Date adding: @c.Date
+                    </p>
+                </div>
+
                 <div>
                     <p>
                         <h5 style="color: #000000">@c.Text</h5>
                     </p>
                 </div>
+                @if (ViewBag.UserName != null)
+                {
+                    @Html.ActionLink("Edit", "Edit", "Article", new { @id = c.Id }, new { @class = "btn btn-default", @style = "background-color: #0000ff; color: #ffffff" })
+                    @Html.ActionLink("Delete", "Delete", "Article", new { @id = c.Id }, new { @class = "btn btn-default", @style = "background-color: #ff0000; color: #ffffff" })
+                }
             </div>
         }
     </div>

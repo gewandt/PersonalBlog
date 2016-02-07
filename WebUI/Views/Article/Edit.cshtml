@@ -1,0 +1,24 @@
+﻿@model BLL.Interface.Entities.BllArticleEntity
+@{
+    ViewBag.Title = "Edit article";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container centered w">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+        <div>
+            @Html.LabelFor(model => model.Name)
+            <p>@Html.EditorFor(model => model.Name, new { @value = Model.Name })</p>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Text)
+            <p>@Html.EditorFor(model => model.Text, new { @value = Model.Text })</p>
+        </div>
+        <p>
+            <button type="submit" class="btn btn-primary">Save</button>
+            @Html.ActionLink("Cancel", "Articles", "Article", new {@id = Model.Id, @user = Model.Blog.User.Name}, new { @class = "btn btn-primary", @style = "background-color: #2f4f4f" })
+        </p>
+    }
+</div>

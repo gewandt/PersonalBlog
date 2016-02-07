@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Text" Type="nvarchar" MaxLength="2048" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
@@ -44,7 +44,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ArticleId" Type="int" Nullable="false" />
         </EntityType>
@@ -170,7 +170,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Text" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
@@ -213,7 +213,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ArticleId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Article" Relationship="Self.FK_Tags_Articles" FromRole="Tags" ToRole="Articles" />
@@ -302,7 +302,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BlogDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="BlogDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Articles" EntityType="Self.Article" />
           <EntitySet Name="Blogs" EntityType="Self.Blog" />
           <EntitySet Name="Comments" EntityType="Self.Comment" />
@@ -339,7 +339,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище BlogDBModelContainer" CdmEntityContainer="BlogDBEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище BlogDBModelContainer" CdmEntityContainer="BlogDBEntities1">
           <EntitySetMapping Name="Articles">
             <EntityTypeMapping TypeName="BlogDBModel.Article">
               <MappingFragment StoreEntitySet="Articles">

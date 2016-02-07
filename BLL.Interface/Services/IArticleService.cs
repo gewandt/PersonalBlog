@@ -10,9 +10,9 @@ namespace BLL.Interface.Services
     public interface IArticleService : IDisposable
     {
         void Create(BllArticleEntity item);
-        //bool Update(int id);
-        //bool Delete(int id);
-        //BllBlogEntity GetById(int id);
+        bool Update(BllArticleEntity item);
+        bool Delete(int id);
+        BllArticleEntity GetById(int id);
         IEnumerable<BllArticleEntity> GetAllByBlog(int id);
         IEnumerable<BllArticleEntity> GetAll();
     }

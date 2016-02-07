@@ -62,10 +62,35 @@ namespace WebUI.Controllers
                     Blog = itemBlog
                 };
                 _articleService.Create(item);
-                return RedirectToAction("Articles");
+                return RedirectToAction("Main", "Blog");
             }
             return RedirectToAction("Articles");
         }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var itemArticle = _articleService.GetById(id);
+            return PartialView("Edit", itemArticle);
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(BllArticleEntity itemArticle)
+        {
+            if (itemArticle != null)
+            {
+                var updArticle = _articleService.GetById(itemArticle.Id);
+                updArticle.Name = itemArticle.Name;
+                updArticle.Text = itemArticle.Text;
+                _articleService.Update(updArticle);
+            }
+            return RedirectToAction("Main", "Blog");
+        }
+        public ActionResult Delete(int id)
+        {
+            if (_articleService.GetById(id) != null)
+                _articleService.Delete(id);
+            return RedirectToAction("Main", "Blog");
+        }
     }
 }

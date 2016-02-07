@@ -30,9 +30,9 @@ namespace BLL.Services
 
         #endregion
 
-        public void Create(BllBlogEntity user)
+        public void Create(BllBlogEntity blog)
         {
-            _blogRepository.Create(user.ToDal());
+            _blogRepository.Create(blog.ToDal());
             _unitOfWork.Commit();
         }
 
