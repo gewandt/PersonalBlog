@@ -90,6 +90,18 @@ namespace BLL.Mappers
             };
         }
 
+        public static DalTagEntity ToDal(this BllTagEntity itemTagEntity)
+        {
+            if (itemTagEntity == null)
+                return null;
+
+            return new DalTagEntity
+            {
+                Id = itemTagEntity.Id,
+                Name = itemTagEntity.Name,
+                Article = itemTagEntity.Article.ToDal()
+            };
+        }
         #endregion
 
         #region DAL to BAL
@@ -148,6 +160,18 @@ namespace BLL.Mappers
             };
         }
 
+        public static BllTagEntity ToBal(this DalTagEntity itemTagEntity)
+        {
+            if (itemTagEntity == null)
+                return null;
+
+            return new BllTagEntity
+            {
+                Id = itemTagEntity.Id,
+                Name = itemTagEntity.Name,
+                Article = itemTagEntity.Article.ToBal()
+            };
+        }
         #endregion
     }
 }

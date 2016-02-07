@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL.Interface.Entities;
+﻿using DAL.Interface.Entities;
 using ORM;
 
 namespace DAL.Mappers
@@ -60,13 +55,26 @@ namespace DAL.Mappers
 
             Article articleEntity = new Article
             {
-                //Id = item.Id,
+                Id = item.Id,
                 Name = item.Name,
                 BlogId = item.Blog.Id,
                 Text = item.Text,
                 Date = item.Date
             };
             return articleEntity;
+        }
+
+        public static Tag ToModel(this DalTagEntity item)
+        {
+            if (item == null)
+                return null;
+            Tag tagEntity = new Tag
+            {
+                Id = item.Id,
+                Name = item.Name,
+                ArticleId = item.Article.Id
+            };
+            return tagEntity;
         }
 
         #endregion
@@ -129,6 +137,20 @@ namespace DAL.Mappers
                 Text = item.Text
             };
             return articleDalEntity;
+        }
+
+        public static DalTagEntity ToDal(this Tag item)
+        {
+            if (item == null)
+                return null;
+
+            DalTagEntity tagDalEntity = new DalTagEntity
+            {
+                Id = item.Id,
+                Name = item.Name,
+                Article = item.Article.ToDal()
+            };
+            return tagDalEntity;
         }
 
         #endregion

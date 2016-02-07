@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
+using WebUI.Models;
 
 namespace WebUI.Controllers
 {
@@ -12,16 +13,19 @@ namespace WebUI.Controllers
     {
         private readonly IBlogService _blogService;
         private readonly IArticleService _articleService;
+        private readonly ITagService _tagService;
 
-        public ArticleController(IBlogService blogService, IArticleService articleService)
+        public ArticleController(IBlogService blogService, IArticleService articleService, ITagService tagService)
         {
             _blogService = blogService;
             _articleService = articleService;
+            _tagService = tagService;
         }
         [HttpGet]
         public ActionResult Articles(int id, string user)
         {
             var articles = _articleService.GetAllByBlog(id);
+            //TODO: work with model + tags
             if (articles != null)
             {
                 var blogName = _blogService.GetById(id).Name;

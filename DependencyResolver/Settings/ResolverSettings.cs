@@ -33,13 +33,13 @@ namespace DependencyResolver.Settings
             kernel.Bind<IMapper<User, DalUserEntity>>().To<UserMapper>().InSingletonScope();
             kernel.Bind<IMapper<Blog, DalBlogEntity>>().To<BlogMapper>().InSingletonScope();
             kernel.Bind<IMapper<Article, DalArticleEntity>>().To<ArticleMapper>().InSingletonScope();
-            //kernel.Bind<IMapper<UserSkill, DalUserSkill>>().To<UserSkillMapper>().InSingletonScope();
+            kernel.Bind<IMapper<Tag, DalTagEntity>>().To<TagMapper>().InSingletonScope();
 
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
             //kernel.Bind<IRepository<DalRoleEntity>>().To<Repository<Role, DalRoleEntity>>();
 
             //kernel.Bind<IService<BllUser>>().To<UserService>().InRequestScope();
-            //kernel.Bind<IService<BllRoleEntity>>().To<RoleService>().InRequestScope();
+            kernel.Bind<ITagService>().To<TagService>().InRequestScope();
             kernel.Bind<IArticleService>().To<ArticleService>().InRequestScope();
             kernel.Bind<IBlogService>().To<BlogService>().InRequestScope();
             kernel.Bind<IRoleService>().To<RoleService>().InRequestScope();
