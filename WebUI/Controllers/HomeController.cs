@@ -10,8 +10,6 @@ namespace WebUI.Controllers
     {
         public ActionResult Index()
         {
-            int hour = DateTime.Now.Hour;
-            ViewBag.Hour = hour;
             return View();
         }
 

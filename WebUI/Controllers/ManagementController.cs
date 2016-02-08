@@ -27,7 +27,6 @@ namespace WebUI.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
-            //TODO: при удалении пользователя сделать удаление всех блогов и комментов
             _userService.Delete(id);
             return RedirectToAction("Control");
         }
@@ -51,7 +50,6 @@ namespace WebUI.Controllers
         {
             if (itemUser != null)
             {
-                // for moderator set indexes from one in DB, with 22 don`t work
                 itemUser.BllRole = _roleService.GetById(role);
                 _userService.Update(itemUser);
             }
@@ -69,8 +67,9 @@ namespace WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(BllUserEntity itemUser, int role)
         {
-            //too work with 1,2,3 numbering on DB
             itemUser.BllRole = _roleService.GetById(role);
+            if (itemUser.Name == null || itemUser.Password == null)
+                return View("Error");
             if (_userService.Contains(itemUser.Name) == null)
                 _userService.Create(itemUser.Name, itemUser.Password, itemUser.BllRole);
             return RedirectToAction("Control");

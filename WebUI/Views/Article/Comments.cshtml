@@ -1,0 +1,27 @@
+﻿@model IEnumerable<BLL.Interface.Entities.BllCommentEntity>
+@{
+    ViewBag.Title = "Comments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Comments</h2>
+<div>
+    <table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <p>@item.User.Name</p>
+                <p>@item.Text</p>
+                <p>@item.Date</p>
+            </tr>
+        }
+    </table>
+    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+        using (Html.BeginForm())
+        {
+            @Html.TextBox("textComment", null, new { @class = "form-control", id = "txtComment" })
+            <input type="submit" value="Save" />
+        }
+    }
+</div>

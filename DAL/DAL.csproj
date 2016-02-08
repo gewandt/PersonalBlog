@@ -56,6 +56,7 @@
     <Compile Include="Expression\ExpressionMapper.cs" />
     <Compile Include="Mappers\ArticleMapper.cs" />
     <Compile Include="Mappers\BlogMapper.cs" />
+    <Compile Include="Mappers\CommentMapper.cs" />
     <Compile Include="Mappers\MapperProperty.cs" />
     <Compile Include="Mappers\RoleMapper.cs" />
     <Compile Include="Mappers\TagMapper.cs" />

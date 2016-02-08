@@ -65,5 +65,22 @@ namespace BLL.Helpers
         }
 
         #endregion
+
+        #region Clean comments with deleting user
+
+        public static void DeleteComments(IRepository<DalCommentEntity> repository, int idUser)
+        {
+            var comments = repository.GetAll()
+                .Where(c => c.User != null)
+                .Where(c => c.User.Id == idUser)
+                .Select(c => c)
+                .ToList();
+            foreach (var item in comments)
+            {
+                repository.Delete(item);
+            }
+        }
+
+        #endregion
     }
 }

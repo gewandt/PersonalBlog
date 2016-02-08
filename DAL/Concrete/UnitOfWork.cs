@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL.Interface.Entities;
 using DAL.Interface.Interfaces;
 using DAL.Interface.Repository;
 using Ninject;
-using ORM;
 
 namespace DAL.Concrete
 {

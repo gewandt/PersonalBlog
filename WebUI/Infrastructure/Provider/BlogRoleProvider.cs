@@ -14,7 +14,6 @@ namespace WebUI.Infrastructure.Provider
             {
                 return System.Web.Mvc.DependencyResolver.Current.GetService<IRoleService>();
             }
-            set { }
         }
         public IUserService UserService
         {
@@ -22,7 +21,6 @@ namespace WebUI.Infrastructure.Provider
             {
                 return System.Web.Mvc.DependencyResolver.Current.GetService<IUserService>();
             }
-            set { }
         }
 
         public override void CreateRole(string roleName)
@@ -33,7 +31,6 @@ namespace WebUI.Infrastructure.Provider
 
         public override bool DeleteRole(string roleName, bool throwOnPopulatedRole)
         {
-            //return RoleService.Remove(roleName);
             return false;
         }
 
@@ -52,7 +49,6 @@ namespace WebUI.Infrastructure.Provider
 
         public override string[] GetAllRoles()
         {
-            //return RoleService.GetAll().Select(x => x.Name).ToArray();
             return null;
         }
 

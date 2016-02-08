@@ -77,6 +77,21 @@ namespace DAL.Mappers
             return tagEntity;
         }
 
+        public static Comment ToModel(this DalCommentEntity item)
+        {
+            if (item == null)
+                return null;
+            Comment comment = new Comment
+            {
+                Id = item.Id,
+                Text = item.Text,
+                ArticleId = item.Article.Id,
+                Date = item.Date,
+                UserId = item.User.Id
+            };
+            return comment;
+        }
+
         #endregion
 
         #region Model to DAL
@@ -149,6 +164,22 @@ namespace DAL.Mappers
                 Id = item.Id,
                 Name = item.Name,
                 Article = item.Article.ToDal()
+            };
+            return tagDalEntity;
+        }
+
+        public static DalCommentEntity ToDal(this Comment item)
+        {
+            if (item == null)
+                return null;
+
+            DalCommentEntity tagDalEntity = new DalCommentEntity
+            {
+                Id = item.Id,
+                Text = item.Text,
+                Article = item.Article.ToDal(),
+                User = item.User.ToDal(),
+                Date = item.Date
             };
             return tagDalEntity;
         }

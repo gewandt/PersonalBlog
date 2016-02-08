@@ -66,7 +66,7 @@ namespace WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(BllBlogEntity itemBlog)
         {
-            if (itemBlog != null)
+            if (itemBlog != null && itemBlog.Name != null)
             {
                 var updBlog = _blogService.GetById(itemBlog.Id);
                 updBlog.Name = itemBlog.Name;

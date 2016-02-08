@@ -4,7 +4,7 @@ using System;
 
 namespace DAL.Interface
 {
-    public class ExpressionMapper<From, To, TResult>
+    public class ExpressionMapper<TFrom, TO, TResult>
     {
         private class Visitor<TFrom, TTo> : ExpressionVisitor
         {
@@ -12,7 +12,7 @@ namespace DAL.Interface
 
             public Visitor(ParameterExpression parameterExpression)
             {
-                this.ParameterExpression = parameterExpression;
+                ParameterExpression = parameterExpression;
             }
 
             protected override Expression VisitParameter(ParameterExpression node)
@@ -23,19 +23,16 @@ namespace DAL.Interface
             {
                 if (node.Member.DeclaringType == typeof(TFrom))
                 {
-                    return Expression.MakeMemberAccess(this.Visit(node.Expression), typeof(TTo).GetMember(node.Member.Name).FirstOrDefault());
+                    return Expression.MakeMemberAccess(Visit(node.Expression), typeof(TTo).GetMember(node.Member.Name).FirstOrDefault());
                 }
-                else
-                {
-                    return base.VisitMember(node);
-                }
+                return base.VisitMember(node);
             }
         }
 
-        public static Expression<Func<To, TResult>> Map(Expression<Func<From, TResult>> expression)
+        public static Expression<Func<TO, TResult>> Map(Expression<Func<TFrom, TResult>> expression)
         {
-            Visitor<From, To> expressionMapper = new Visitor<From, To>(Expression.Parameter(typeof(To), expression.Parameters[0].Name));
-            return Expression.Lambda<Func<To, TResult>>(expressionMapper.Visit(expression.Body), expressionMapper.ParameterExpression);
+            Visitor<TFrom, TO> expressionMapper = new Visitor<TFrom, TO>(Expression.Parameter(typeof(TO), expression.Parameters[0].Name));
+            return Expression.Lambda<Func<TO, TResult>>(expressionMapper.Visit(expression.Body), expressionMapper.ParameterExpression);
         }
     }
 }

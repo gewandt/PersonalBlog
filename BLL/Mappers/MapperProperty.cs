@@ -9,31 +9,10 @@ namespace BLL.Mappers
     {
         #region BLL to DAL
 
-        public static IDalEntity ToDal(this IBllEntity itemEntity)
-        {
-            //if (itemEntity == null)
-            //    return null;
-
-            //if (itemEntity is BllUserEntity)
-            //{
-            //    var itemUserEntity = (BllUserEntity)itemEntity;
-            //    DalUserEntity dalUserEntity = new DalUserEntity();
-            //    dalUserEntity.Id = itemUserEntity.Id;
-            //    dalUserEntity.Name = itemUserEntity.Name;
-            //    dalUserEntity.Password = itemUserEntity.Password;
-            //    dalUserEntity.DalRole = itemUserEntity.BllRole.ToDal();
-            //    return dalUserEntity;
-            //}
-            //if (itemEntity is BllRoleEntity)
-            //{
-            //    var itemRoleEntity = (BllRoleEntity)itemEntity;
-            //    DalRoleEntity dalRoleEntity = new DalRoleEntity();
-            //    dalRoleEntity.Id = itemRoleEntity.Id;
-            //    dalRoleEntity.Name = itemRoleEntity.Name;
-            //    return dalRoleEntity;
-            //}
-            return null;
-        }
+        //public static IDalEntity ToDal(this IBllEntity itemEntity)
+        //{
+        //    return null;
+        //}
 
         public static DalUserEntity ToDal(this BllUserEntity itemUserEntity)
         {
@@ -101,6 +80,22 @@ namespace BLL.Mappers
                 Article = itemTagEntity.Article.ToDal()
             };
         }
+
+        public static DalCommentEntity ToDal(this BllCommentEntity itemCommentEntity)
+        {
+            if (itemCommentEntity == null)
+                return null;
+
+            return new DalCommentEntity
+            {
+                Id = itemCommentEntity.Id,
+                Text = itemCommentEntity.Text,
+                Article = itemCommentEntity.Article.ToDal(),
+                Date = itemCommentEntity.Date,
+                User = itemCommentEntity.User.ToDal()
+            };
+        }
+
         #endregion
 
         #region DAL to BAL
@@ -171,6 +166,22 @@ namespace BLL.Mappers
                 Article = itemTagEntity.Article.ToBal()
             };
         }
+
+        public static BllCommentEntity ToBal(this DalCommentEntity itemCommentEntity)
+        {
+            if (itemCommentEntity == null)
+                return null;
+
+            return new BllCommentEntity
+            {
+                Id = itemCommentEntity.Id,
+                Text = itemCommentEntity.Text,
+                Article = itemCommentEntity.Article.ToBal(),
+                Date = itemCommentEntity.Date,
+                User = itemCommentEntity.User.ToBal()
+            };
+        }
+
         #endregion
     }
 }

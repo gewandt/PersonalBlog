@@ -220,6 +220,8 @@
     <Content Include="Views\Article\Articles.cshtml" />
     <Content Include="Views\Article\Create.cshtml" />
     <Content Include="Views\Article\Edit.cshtml" />
+    <Content Include="Views\Article\Search.cshtml" />
+    <Content Include="Views\Article\Comments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\" />

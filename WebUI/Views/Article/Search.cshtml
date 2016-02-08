@@ -1,0 +1,30 @@
+﻿@model IEnumerable<BLL.Interface.Entities.BllArticleEntity>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search</h2>
+<div style="font: document">
+    @using (@Html.BeginForm())
+    {
+        <b>Name of article</b>
+        @Html.TextBox("searchParam", null, new {id = "txtSearch"})
+        <input type="submit" value="Search"/>
+    }
+</div>
+<div>
+    <table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th style="width: 30%">
+                    @item.Name
+                </th>
+                <th style="width: 30%">
+                    @item.Text
+                </th>
+            </tr>
+        }
+    </table>
+</div>

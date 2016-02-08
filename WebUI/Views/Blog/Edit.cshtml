@@ -1,4 +1,5 @@
-﻿@model BLL.Interface.Entities.BllBlogEntity
+﻿@using System.Web.UI.WebControls
+@model BLL.Interface.Entities.BllBlogEntity
 @{
     ViewBag.Title = "Edit blog";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,11 +8,18 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.Id)
-        <div>
-            @Html.LabelFor(model => model.Name)
-            <p>@Html.EditorFor(model => model.Name, new{ @value=Model.Name})</p>
-        </div>
+        if (Model == null)
+        {
+            <label>Error</label>
+        }
+        else
+        {
+            @Html.HiddenFor(model => model.Id)
+            <div>
+                @Html.LabelFor(model => model.Name)
+                <p>@Html.EditorFor(model => model.Name, new { @value = Model.Name })</p>
+            </div>
+        }
         <p>
             <button type="submit" class="btn btn-primary">Save</button>
             @Html.ActionLink("Cancel", "Main", "Blog", null, new { @class = "btn btn-primary", @style = "background-color: #2f4f4f" })

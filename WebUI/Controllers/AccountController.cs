@@ -50,8 +50,6 @@ namespace WebUI.Controllers
             if (ModelState.IsValid && _userService.Contains(login, password))
             {
                 FormsAuthentication.SetAuthCookie(login, remember);
-                //ViewBag.Role = _userService.GetRole(login);
-                //return View("Error");
                 return RedirectToAction("Index", "Home");
             }
             ModelState.AddModelError("", "Wrong login or password");

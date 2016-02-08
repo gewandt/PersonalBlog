@@ -4,62 +4,56 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm())
-{
-    <h2 style="padding-left: 10%">Articles in blog "@ViewBag.BlogName" :</h2>
-    <div class="centered">
-        @if (ViewBag.UserName != null)
-        {
-            @Html.ActionLink("+ Add article", "Create", "Article", new { @username = ViewBag.UserName, @blog = ViewBag.BlogName }, new { @class = "btn btn-default", @style = "background-color: #00ff00; color: #ffffff" })
-        }
-    </div>
-    <div class="text-">
-        @foreach (var c in Model)
-        {
-            @Html.HiddenFor(model => c)
-            <div style="padding-left: 10%; padding-right: 10%">
-                @if (ViewBag.UserName == null)
-                {
-                    <div>
-                        <label>@c.Name</label>
-                    </div>
-                }
-                else
-                {
-                    @Html.ActionLink(c.Name, "Articles", "Article", new { @item = c }, new { @class = "text-primary" })
-                }
+<h2 style="padding-left: 10%">Articles in blog "@ViewBag.BlogName" :</h2>
+<div class="centered">
+    @if (ViewBag.UserName != null)
+    {
+        @Html.ActionLink("+ Add article", "Create", "Article", new { @username = ViewBag.UserName, @blog = ViewBag.BlogName }, new { @class = "btn btn-default", @style = "background-color: #00ff00; color: #ffffff" })
+    }
+</div>
+<div class="text-">
+    @foreach (var c in Model)
+    {
+        @Html.HiddenFor(model => c)
+        <div style="padding-left: 10%; padding-right: 10%">
+            @*@if (ViewBag.UserName == null)
+            {
                 <div>
-                    <p>
-                        Author: @c.Author
-                    </p>
-                    <p>
-                        Date adding: @c.Date
-                    </p>
-                    <p>
-                        Tags:
-                        @{
-                            foreach (var result in c.Tags.Select(m => m.Name))
-                            {
-                                <div class="btn btn-group-xs" style="background-color: #008b8b; color: #d3d3d3">
-                                    @result
-                                </div>
-                            }
-                        }
-                    </p>
+                    <label>@c.Name</label>
                 </div>
-
-                <div>
-                    <p>
-                        <h5 style="color: #000000">@c.Text</h5>
-                    </p>
-                </div>
-                @if (ViewBag.UserName != null)
-                {
-                    @Html.ActionLink("Edit", "Edit", "Article", new { @id = c.Id }, new { @class = "btn btn-default", @style = "background-color: #0000ff; color: #ffffff" })
-                    @Html.ActionLink("Delete", "Delete", "Article", new { @id = c.Id }, new { @class = "btn btn-default", @style = "background-color: #ff0000; color: #ffffff" })
-                }
+            }*@
+                @Html.ActionLink(c.Name, "Comments", "Article", new { @id = c.Id }, new { @class = "text-primary" })
+            <div>
+                <p>
+                    Author: @c.Author
+                </p>
+                <p>
+                    Date adding: @c.Date
+                </p>
+                <p>
+                    Tags:
+                    @{
+        foreach (var result in c.Tags.Select(m => m.Name))
+        {
+            <div class="btn btn-group-xs" style="background-color: #008b8b; color: #d3d3d3">
+                @result
             </div>
         }
-    </div>
-}
+                    }
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    <h5 style="color: #000000">@c.Text</h5>
+                </p>
+            </div>
+            @if (ViewBag.UserName != null)
+            {
+                @Html.ActionLink("Edit", "Edit", "Article", new { @id = c.Id }, new { @class = "btn btn-default", @style = "background-color: #0000ff; color: #ffffff" })
+                @Html.ActionLink("Delete", "Delete", "Article", new { @id = c.Id }, new { @class = "btn btn-default", @style = "background-color: #ff0000; color: #ffffff" })
+            }
+        </div>
+    }
+</div>
 

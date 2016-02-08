@@ -24,7 +24,12 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <div class="btn btn-lg nopadding">
-                            @Html.ActionLink("HOME", "Home", "Home", null, new { @class = "btn btn-lg" })
+                            @Html.ActionLink("HOME", "Home", "Home", null, new {@class = "btn btn-lg"})
+                        </div>
+                    </li>
+                    <li>
+                        <div class="btn btn-lg nopadding">
+                            @Html.ActionLink("SEARCH", "Search", "Article", null, new { @class = "btn btn-lg" })
                         </div>
                     </li>
                     @if (Request.IsAuthenticated)

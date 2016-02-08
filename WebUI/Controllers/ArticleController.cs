@@ -16,40 +16,61 @@ namespace WebUI.Controllers
         private readonly IBlogService _blogService;
         private readonly IArticleService _articleService;
         private readonly ITagService _tagService;
+        private readonly ICommentService _commentService;
 
-        public ArticleController(IBlogService blogService, IArticleService articleService, ITagService tagService)
+        public ArticleController(IBlogService blogService, IArticleService articleService, ITagService tagService, ICommentService commentService)
         {
             _blogService = blogService;
             _articleService = articleService;
             _tagService = tagService;
+            _commentService = commentService;
         }
         [HttpGet]
         public ActionResult Articles(int id, string user)
         {
-            var articles = _articleService.GetAllByBlog(id);
-            if (articles != null)
+            try
             {
-                var articlesModel = GetListOfArticles(articles);
-                var blogName = _blogService.GetById(id).Name;
-                ViewBag.BlogName = blogName ?? string.Empty;
-                ViewBag.UserName = user;
-                return View("Articles", articlesModel);
+                var articles = _articleService.GetAllByBlog(id);
+                if (articles != null)
+                {
+                    var articlesModel = GetListOfArticles(articles);
+                    var blogName = _blogService.GetById(id).Name;
+                    ViewBag.BlogName = blogName ?? string.Empty;
+                    ViewBag.UserName = user;
+                    return View("Articles", articlesModel);
+                }
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
             }
             return RedirectToAction("Main", "Blog");
         }
 
-        private IEnumerable<ArticleModel> GetListOfArticles(IEnumerable<BllArticleEntity> articles)
+        public ActionResult Search()
         {
-            return articles.Select(item => new ArticleModel
-            {
-                Id = item.Id,
-                Name = item.Name,
-                Text = item.Text,
-                Tags = _tagService.GetAllForArticle(item.Id).ToList(),
-                Author = item.Blog.User.Name,
-                Date = item.Date
-            }).ToList();
+            var listArticles = _articleService.GetAll().ToList();
+            return PartialView("Search", listArticles);
         }
+
+        [HttpPost]
+        public ActionResult Search(string searchParam)
+        {
+            List<BllArticleEntity> list = new List<BllArticleEntity>();
+            if (string.IsNullOrEmpty(searchParam))
+            {
+                list = _articleService.GetAll().ToList();
+            }
+            else
+            {
+                list = _articleService.GetAll()
+                    .Where(item => item.Name.StartsWith(searchParam))
+                    .ToList();
+            }
+            return PartialView("Search", list);
+        }
+
+
 
         [HttpGet]
         public ActionResult Create(string blog, string username)
@@ -100,17 +121,7 @@ namespace WebUI.Controllers
             return RedirectToAction("Articles");
         }
 
-        private List<BllTagEntity> GetListOfTags(ArticleModel itemArticle, BllArticleEntity item)
-        {
-            string[] substrings = Regex.Split(itemArticle.CurrentTag, ";");
-            return (from match in substrings
-                where match != string.Empty
-                select new BllTagEntity
-                {
-                    Name = match, 
-                    Article = item
-                }).ToList();
-        }
+
 
         [HttpGet]
         public ActionResult Edit(int id)
@@ -131,16 +142,7 @@ namespace WebUI.Controllers
             return View("Error");
         }
 
-        private StringBuilder GetStringOfTags(BllArticleEntity itemArticle)
-        {
-            var tags = _tagService.GetAllForArticle(itemArticle.Id);
-            StringBuilder sb = new StringBuilder();
-            foreach (var item in tags)
-            {
-                sb.AppendFormat("{0};", item.Name);
-            }
-            return sb;
-        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -167,5 +169,68 @@ namespace WebUI.Controllers
                 _articleService.Delete(id);
             return RedirectToAction("Main", "Blog");
         }
+
+        public ActionResult Comments(int id)
+        {
+            var comments = _commentService.GetAllForArticle(id).ToList();
+            TempData["articleId"] = id;
+            return View(comments);
+        }
+
+        [HttpPost]
+        public ActionResult Comments(string textComment)
+        {
+            try
+            {
+                var articleId = (int)TempData["articleId"];
+                if (textComment != string.Empty)
+                    _commentService.Create(HttpContext.User.Identity.Name, textComment, articleId);
+                return RedirectToAction("Comments", articleId);
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
+        }
+
+        #region Private members
+
+        private IEnumerable<ArticleModel> GetListOfArticles(IEnumerable<BllArticleEntity> articles)
+        {
+            return articles.Select(item => new ArticleModel
+            {
+                Id = item.Id,
+                Name = item.Name,
+                Text = item.Text,
+                Tags = _tagService.GetAllForArticle(item.Id).ToList(),
+                Author = item.Blog.User.Name,
+                Date = item.Date
+            }).ToList();
+        }
+
+        private List<BllTagEntity> GetListOfTags(ArticleModel itemArticle, BllArticleEntity item)
+        {
+            string[] substrings = Regex.Split(itemArticle.CurrentTag, ";");
+            return (from match in substrings
+                    where match != string.Empty
+                    select new BllTagEntity
+                    {
+                        Name = match,
+                        Article = item
+                    }).ToList();
+        }
+
+        private StringBuilder GetStringOfTags(BllArticleEntity itemArticle)
+        {
+            var tags = _tagService.GetAllForArticle(itemArticle.Id);
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in tags)
+            {
+                sb.AppendFormat("{0};", item.Name);
+            }
+            return sb;
+        }
+
+        #endregion
     }
 }
