@@ -65,7 +65,7 @@ namespace BLL.Services
             var user = _userRepository.GetById(id);
             if (user == null)
                 return;
-            Helper.DeleteComments(_commentRepository, id);
+            //Helper.DeleteComments(_commentRepository, id);
             Helper.DeleteBlogs(_blogRepository, _articleRepository, _tagRepository, id);
             _userRepository.Delete(user);
             _unitOfWork.Commit();

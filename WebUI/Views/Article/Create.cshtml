@@ -18,9 +18,10 @@
             <label>Name of article</label>
             <p>@Html.TextBoxFor(itemArticle => itemArticle.Name, new { @class = "form-control" })</p>
             <label>Text of article</label>
-            <p>@Html.TextBoxFor(itemArticle => itemArticle.Text, new {@class = "text-center"})</p>
+            <p>@Html.TextBoxFor(itemArticle => itemArticle.Text, new { @class = "form-control" })</p>
             <p>
-                @Html.TextBoxFor(itemModel => itemModel.CurrentTag, new { @class = "form-control" })
+                <label>Tags (;)</label>
+                @Html.TextBoxFor(itemModel => itemModel.CurrentTag, new {@class = "form-control"})
             </p>
             <p>
                 <button type="submit" class="btn btn-primary">Accept</button>

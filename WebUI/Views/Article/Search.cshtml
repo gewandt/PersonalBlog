@@ -4,16 +4,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Search</h2>
-<div style="font: document">
-    @using (@Html.BeginForm())
-    {
-        <b>Name of article</b>
-        @Html.TextBox("searchParam", null, new {id = "txtSearch"})
-        <input type="submit" value="Search"/>
-    }
+<div class="centered">
+    <h2>Search</h2>
+    <div style="font: document">
+        @using (@Html.BeginForm())
+        {
+            <b>Name of article</b>
+            @Html.TextBox("searchParam", null, new { id = "txtSearch" })
+            <input type="submit" value="Search" />
+        }
+    </div>
 </div>
-<div>
+<div class="centered">
     <table>
         @foreach (var item in Model)
         {
@@ -28,3 +30,4 @@
         }
     </table>
 </div>
+
